@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="css/content.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="icon" href="img/28799812331.png" />
+
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Location Assistant</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/hospital.css" rel="stylesheet">
+    <script src="js/hospital.js"></script>
+  
+
+   
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+    <script>
+      const CONFIGURATION = {
+        "locations": [
+          {"title":"Airport Womens Hospital","address1":"16 Kofi Annan St","address2":"Accra, Ghana","coords":{"lat":5.618125616092178,"lng":-0.17890837976227703},"placeId":"ChIJp_2TRw6b3w8R2DchwQH5tQU"},
+          {"title":"Inkoom Hospital","address1":"Spintex Road","address2":"Accra, Ghana","coords":{"lat":5.634031542426188,"lng":-0.09845010674591759},"placeId":"ChIJmz_D3W2E3w8RJxCvomO2aV4"},
+          {"title":"Bemuah Royal Hospital","address1":"17 Asoyi Cres","address2":"Accra, Ghana","coords":{"lat":5.646069534386616,"lng":-0.15697479510649703},"placeId":"ChIJPT7Nwleb3w8RceyKxcqzXVY"},
+          {"title":"North Legon Hospital","address1":"Kofi Annan Ave","address2":"Accra, Ghana","coords":{"lat":5.669376239896751,"lng":-0.1824469797622763},"placeId":"ChIJBfLjgfSc3w8RkklGdCiwBD0"},
+          {"title":"DEL International Hospital","address1":"65/67 Nii Sai Street","address2":"65 Fourth St, Accra, Ghana","coords":{"lat":5.652784785900643,"lng":-0.15351499140166647},"placeId":"ChIJ4wDsiqyc3w8RZKV1B-DG0Vc"},
+          {"title":"Nyaho Medical Centre","address1":"35 Kofi Annan St","address2":"Accra, Ghana","coords":{"lat":5.614456984059731,"lng":-0.18505705092621616},"placeId":"ChIJjyZnfAib3w8R0FpvbKjy8ps"},
+          {"title":"Lekma Hospital","address1":"Agblezaa - Manet Rd","address2":"Accra, Ghana","coords":{"lat":5.6031166524715825,"lng":-0.12003480674591227},"placeId":"ChIJiayqmwKF3w8RuRDK9S7GY3Y"},
+          {"title":"Ridge Hospital","address1":"Castle Rd","address2":"Accra, Ghana","coords":{"lat":5.561668823722191,"lng":-0.19863834907379863},"placeId":"ChIJN5yfMHaa3w8RdnVUzz6HULQ"},
+          {"title":"37 Military Teaching Hospital","address1":"Liberation Road","address2":"Accra, Ghana","coords":{"lat":5.588813184153172,"lng":-0.18408133558197592},"placeId":"ChIJn-TYJ_Sa3w8RSSQ-Gvmn9Ks"},
+          {"title":"Accra Psychiatric Hospital","address1":"Castle Rd","address2":"Accra, Ghana","coords":{"lat":5.563623916193989,"lng":-0.20417616256561244},"placeId":"ChIJtawDPnWa3w8RV2bMuHBVhVs"},
+          {"title":"IMPACT MEDICAL AND DIAGNOSTIC CENTRE","address1":"5 Nyanyo Ln","address2":"Accra, Ghana","coords":{"lat":5.570855156568714,"lng":-0.20154063558196045},"placeId":"ChIJhwudPHKa3w8RJjX2DwFXbMI"},
+          {"title":"Achimota Hospital","address1":"Aggrey St","address2":"Achimota, Ghana","coords":{"lat":5.629796331658854,"lng":-0.2169895490737983},"placeId":"ChIJiwKoe-ab3w8RHgb80S3MNlk"},
+          {"title":"Vision Hospital","address1":"Oyarifa Street H","address2":"Ghana","coords":{"lat":5.735449973734976,"lng":-0.16678040674591443},"placeId":"ChIJMygBUud33w8RHVtt2EzqzgQ"},
+          {"title":"HILL TOP CLINIC","address1":"Anyaa-Awoshie Rd","address2":"Accra, Ghana","coords":{"lat":5.611598615767247,"lng":-0.2995301932540806},"placeId":"ChIJF3Z1f4KY3w8RDerMoAikgcU"},
+          {"title":"Narh-Bita Hospital","address1":"Community 4 Road","address2":"Tema, Ghana","coords":{"lat":5.65871180806925,"lng":-0.010742822090143989},"placeId":"ChIJyZoJnLqA3w8RkvWo4nWxpTo"},
+          {"title":"Hephzibah Christian Centre","address1":"Hephzibah Christian Centre","address2":"Aburi, Ghana","coords":{"lat":5.800304049886531,"lng":-0.18246017976226936},"placeId":"ChIJIzb3nyZ33w8RtDaovbiKhgQ"},
+          {"title":"Tema Christian Eye Center","address1":"Tema","address2":"Ghana","coords":{"lat":5.645969785694949,"lng":-0.009131206745907061},"placeId":"ChIJT6QIrlKH3w8Rshp9j0cMytI"},
+          {"title":"Christian Medical Centre","address1":"JW4C+HRX","address2":"Accra, Ghana","coords":{"lat":5.606718137895944,"lng":-0.07786847790985263},"placeId":"ChIJoRrNoCuE3w8RHr5ic9iHCgw"},
+          {"title":"Christian Health Association Of GHANA","address1":"Jubilee Well St","address2":"Accra, Ghana","coords":{"lat":5.563130460513118,"lng":-0.16491462209013985},"placeId":"ChIJnX0RwKCa3w8RhofZT8JDbwc"},
+          {"title":"Shai-Osudoku District Hospital","address1":"Ayikuma road","address2":"Dodowa, Ghana","coords":{"lat":5.899977686138301,"lng":-0.09148295092620717},"placeId":"ChIJqwTqCUd73w8R5MB7WF0N0LQ"},
+          {"title":"Crown Medical Centre, Accra - Ghana","address1":"No 103 Hallelujah Broadway","address2":"Powerland, Ghana","coords":{"lat":5.69033455207226,"lng":-0.18286883558197298},"placeId":"ChIJDX40mwGd3w8R_7YUOK8uGTw"},
+          {"title":"Eden Family Hospital","address1":"Accra","address2":"Ghana","coords":{"lat":5.579843459934693,"lng":-0.22823933558196785},"placeId":"ChIJ_YV2jPSZ3w8R5gjK0KsWw0E"},
+          {"title":"Egon German Clinic","address1":"Abelemkpe St","address2":"Accra, Ghana","coords":{"lat":5.612873058757536,"lng":-0.21429460859831995},"placeId":"ChIJo7i7xc-b3w8RImSIgaMYDcs"},
+          {"title":"Family Health Hospital","address1":"Teshie Rd","address2":"Accra, Ghana","coords":{"lat":5.573134388248133,"lng":-0.11224652209015584},"placeId":"ChIJnaQl5neF3w8RC4oLkbNDQY0"},
+          {"title":"Finney Hospital and Fertility Centre","address1":"Mile 11 Junction","address2":"New Bortianor Bortianor, Accra, Mile 11, Ghana","coords":{"lat":5.512128480794126,"lng":-0.33492839510650185},"placeId":"ChIJUWhtCri83w8Rsm_FmBqwITk"},
+          {"title":"Abokobi Health Centre","address1":"PQPW+25G","address2":"Pantang West, Ghana","coords":{"lat":5.73515336508537,"lng":-0.2045076779098487},"placeId":"ChIJH0LTiiF23w8RxUXbeLyv1Sc"},
+          {"title":"C\u0026J Medicare Hospital and Diagnostic Centre","address1":"Spintex Sakumono Road","address2":"Lashibi, Ghana","coords":{"lat":5.624720638988555,"lng":-0.06947270674591888},"placeId":"ChIJy6WWrZiG3w8RhAii4Ccft7E"},
+          {"title":"La General Hospital","address1":"Jomo St","address2":"Accra, Ghana","coords":{"lat":5.555585246756575,"lng":-0.16673347976227548},"placeId":"ChIJ8QxkkAyQ3w8RmgvtAOWrJmk"},
+          {"title":"Lapaz Community Hospital","address1":"Lapaz","address2":"Ghana","coords":{"lat":5.608815178368487,"lng":-0.2535188509262021},"placeId":"ChIJs1o9DAaZ3w8Rb99hKq8b--0"},
+          {"title":"Lapaz Community Hospital Annex","address1":"Dome Road","address2":"Accra, Ghana","coords":{"lat":5.63563587635772,"lng":-0.2152039202377254},"placeId":"ChIJga3sq_qb3w8RVUCkJ9Xrf6A"},
+          {"title":"Lister Hospital","address1":"Nii Martey Tsuru St","address2":"Accra, Ghana","coords":{"lat":5.619755975723764,"lng":-0.14643873558196185},"placeId":"ChIJd04t8Umb3w8RKRG49_A8gGI"},
+          {"title":"Manna Mission Hospital","address1":"1 Nii Akron Boye Street","address2":"Tsuibleoo, Ghana","coords":{"lat":5.607764534760649,"lng":-0.10811812209015725},"placeId":"ChIJ6-DcYPyF3w8RkMD17h3udaE"},
+          {"title":"North Ridge Clinic","address1":"Tabon St","address2":"Accra, Ghana","coords":{"lat":5.573021128050679,"lng":-0.19834597790985953},"placeId":"ChIJH0s40m-a3w8Rr86xy3HzSPE"},
+          {"title":"Pantang Hospital","address1":"Adenta Municipality","address2":"Ghana","coords":{"lat":5.718270402248292,"lng":-0.1881508932540843},"placeId":"ChIJmVKSBp2d3w8RyX-yeqcKG5w"},
+          {"title":"Police Hospital","address1":"Cantonments","address2":"Accra, Ghana","coords":{"lat":5.568526515910316,"lng":-0.18213183558196455},"placeId":"ChIJVXhmFoSa3w8RS_5FrqTPoTM"},
+          {"title":"Lister Hospital And Fertility Centre","address1":"Airport Hills Blvd","address2":"Accra, Ghana","coords":{"lat":5.619451074444316,"lng":-0.14647162209015852},"placeId":"ChIJJSpbnWKa3w8RsrbgNIuuyvA"},
+          {"title":"Primecare Medical Center","address1":"5°33\u002739.5\"N 0°14","address2":"48 2nd St, Accra, Ghana","coords":{"lat":5.560989018607787,"lng":-0.24674882209014815},"placeId":"ChIJXwilwmGX3w8RzoUJxrZsd6U"},
+          {"title":"Princess Marie Louise Children\u0027s Hospital","address1":"Children\u0027s Hospital","address2":"Derby Ave, Accra, Ghana","coords":{"lat":5.545049302023362,"lng":-0.21302033558197486},"placeId":"ChIJ_UwSurmQ3w8RMgP5CVQtngQ"},
+          {"title":"Akai House Clinic","address1":"1 Sixth Circular Rd","address2":"Accra, Ghana","coords":{"lat":5.5772839239207075,"lng":-0.17152759325408606},"placeId":"ChIJjzBpn5aa3w8RiK2CsdwrbXw"},
+          {"title":"Aneeja Hospital","address1":"Thyme Avenue","address2":"Accra, Ghana","coords":{"lat":5.641572045741975,"lng":-0.26004877976227414},"placeId":"ChIJ41qxNiqZ3w8RkpEYkZRMFyU"},
+          {"title":"A\u0026A Medlove Medical Centre","address1":"PQ8W+564","address2":"Adenta Municipality, Ghana","coords":{"lat":5.7153882041413535,"lng":-0.2044274355819664},"placeId":"ChIJxRnoapOd3w8RFSmunmHxACY"},
+          {"title":"Opmann Clinic","address1":"Okaikoi South","address2":"Accra, Ghana","coords":{"lat":5.608098134479773,"lng":-0.24204763558196563},"placeId":"ChIJgcAglnSZ3w8RCCcRvBvW4hQ"},
+          {"title":"Advanced Bodysculpt Centre","address1":"Accra - Cape Coast Rd","address2":"Accra, Ghana","coords":{"lat":5.565208281576013,"lng":-0.28902393558197126},"placeId":"ChIJX8ikrla93w8Rm-PhVrfBYDs"},
+          {"title":"Royal Good Shepherd Hospital","address1":"HM83+525","address2":"Mile 11, Ghana","coords":{"lat":5.565396352175961,"lng":-0.34739266441803585},"placeId":"ChIJj_9bbDKj3w8R_OzqFWzJyBU"},
+          {"title":"Otobia Memorial Hospital","address1":"JQXG+G6V","address2":"Accra, Ghana","coords":{"lat":5.648906777065466,"lng":-0.22445466441802342},"placeId":"ChIJ544r1gGc3w8R8j4Hr8chN60"},
+          {"title":"Lighthouse Mission Hospital","address1":"HQQ9+3C7","address2":"Accra, Ghana","coords":{"lat":5.587691900935751,"lng":-0.2314585355819787},"placeId":"ChIJxwPP1o2Z3w8R7PPkJ9FEbjs"},
+          {"title":"Vicom Specialist Hospital","address1":"20th Rd","address2":"Accra, Ghana","coords":{"lat":5.5509977922638525,"lng":-0.2656610644180235},"placeId":"ChIJNVR98yeX3w8Ry0oSDNsf2Ms"},
+          {"title":"Gbegbe Royal Clinic","address1":"Botoi Shienyo St","address2":"Accra, Ghana","coords":{"lat":5.526705371185437,"lng":-0.26385004907379495},"placeId":"ChIJU-m6lEKX3w8Rj4Jb354sSKM"},
+          {"title":"KARIKARI BROBBEY HOSPITAL","address1":"Gbegbe St","address2":"Accra, Ghana","coords":{"lat":5.53110814595847,"lng":-0.26172982209015316},"placeId":"ChIJJ-6AGwiX3w8RUsuqZoNTFjk"},
+          {"title":"Bethel Specialist Hospital","address1":"Community 9","address2":"Tema, Ghana","coords":{"lat":5.6722252142503535,"lng":-0.01932759325408817},"placeId":"ChIJsZWYoOyA3w8RzvVtS_18S4w"},
+          {"title":"Shepherdcare Medical Centre","address1":"Klagon","address2":"Tema, Ghana","coords":{"lat":5.656998436264553,"lng":-0.048633193254083995},"placeId":"ChIJrzFn0TqB3w8RBTVU4ywDuE4"},
+          {"title":"Rophi Hospital","address1":"Accra","address2":"Ghana","coords":{"lat":5.628337035255858,"lng":-0.08034796441802383},"placeId":"ChIJ6a03PBmE3w8RKT3aFygY1eo"},
+          {"title":"University Hospital - Legon","address1":"MR2C+CRF","address2":"Accra, Ghana","coords":{"lat":5.651068600940086,"lng":-0.17793687790985224},"placeId":"ChIJj8TGsYSc3w8R8uiv06jAlx8"},
+          {"title":"Raphal Hospital","address1":"P2JH+J8M","address2":"Tema, Ghana","coords":{"lat":5.731589198400187,"lng":0.0283070644180361},"placeId":"ChIJpRlUazWBIBARRNsa3OcRGFk"},
+          {"title":"American International Hospital","address1":"PX8J+6V","address2":"Tema, Ghana","coords":{"lat":5.715472197860407,"lng":-0.017973193254094966},"placeId":"ChIJQXz5FRaA3w8RB5o4c79sZyo"},
+          {"title":"Tema Women\u0027s Hospital","address1":"community eleven","address2":"Hospital Rd, Tema, Ghana","coords":{"lat":5.665609316255231,"lng":-0.018806264418027574},"placeId":"ChIJuX_iCsCA3w8RFpfhCRIL7LY"},
+          {"title":"Afrakomah Community Hospital","address1":"Stadium Road","address2":"Accra, Ghana","coords":{"lat":5.681162342508633,"lng":-0.2711712932540977},"placeId":"ChIJmSdzb-Gf3w8RsCL1Lvg6IEA"},
+          {"title":"The Rock Hospital","address1":"Odorkor","address2":"Accra, Ghana","coords":{"lat":5.585108485252002,"lng":-0.262479593254088},"placeId":"ChIJS8oG10qY3w8RXkCQKEeglTI"},
+          {"title":"Kumoji Hospital","address1":"Josif Broz Tito Ave","address2":"Accra, Ghana","coords":{"lat":5.574124028499086,"lng":-0.18282313558196872},"placeId":"ChIJ4x_VzYia3w8RzgkeCvz25Jk"},
+          {"title":"New Ashongman Community Hospital","address1":"Accra","address2":"Kwabenya, Ghana","coords":{"lat":5.684461238817987,"lng":-0.2536996067459141},"placeId":"ChIJs6hUqoee3w8RARJxndV5HWM"},
+          {"title":"Ashiyie Community Clinic","address1":"PRWW+64W","address2":"Ghana","coords":{"lat":5.745657231785036,"lng":-0.15468199325407994},"placeId":"ChIJhSmkV_F33w8Req43cM-tpQM"},
+          {"title":"Sweden Ghana Medical Centre","address1":"Tema Municipal","address2":"Ghana","coords":{"lat":5.725384880179812,"lng":-0.1146162355819702},"placeId":"ChIJWw8EMoGC3w8RnmpRm3sdVkQ"},
+          {"title":"Megavest Medical Centre","address1":"Simpson St","address2":"Accra, Ghana","coords":{"lat":5.589050003140116,"lng":-0.24724476441803311},"placeId":"ChIJHb1vwpuZ3w8RSmvye1uwrbg"},
+          {"title":"Accra Medical Centre","address1":"Accra","address2":"Ghana","coords":{"lat":5.568722956403486,"lng":-0.18603833558196836},"placeId":"ChIJRRk7bIea3w8RF33vwFtUqmU"},
+          {"title":"New Crystal Hospital, Ashaiman","address1":"MXP8+PQC","address2":"Ghana","coords":{"lat":5.686849301496774,"lng":-0.03312866441803619},"placeId":"ChIJc_XCSP-A3w8Rt2B9cXdOiew"},
+          {"title":"New Crystal Hospital, Tema Com 8","address1":"Community Eight","address2":"Tema, Ghana","coords":{"lat":5.665901229460154,"lng":-0.014212306745915448},"placeId":"ChIJkdbjC76A3w8RnRlXDWIC4Ww"},
+          {"title":"New Crystal Clinic","address1":"Tema-Jasikan Rd","address2":"Tema, Ghana","coords":{"lat":5.736631493299971,"lng":-0.0142344932540861},"placeId":"ChIJR00Y3vN_3w8RtGGqaxoXvGA"},
+          {"title":"SUNCITY MEDICAL CENTRE","address1":"Tema","address2":"Ghana","coords":{"lat":5.687871065498326,"lng":-0.037346922090157886},"placeId":"ChIJ______-A3w8R0kHYjNC7pcM"},
+          {"title":"NEW CRYSTAL HOSPITAL ADJEI KOJO","address1":"Tema Metropolitan","address2":"Ghana","coords":{"lat":5.68384964328144,"lng":-0.054820664418036014},"placeId":"ChIJ_R6THvSB3w8RtqxPPN8v7tE"},
+          {"title":"New Crystal Specialist Center","address1":"Kortu-gon","address2":"Tema, Ghana","coords":{"lat":5.649440613200718,"lng":-0.009141693254088867},"placeId":"ChIJZRlYmdOB3w8R7oTv_zDikcQ"},
+          {"title":"NEW CRYSTAL HEALTH SERVICES- HEAD OFFICE","address1":"Adjei Kojo Lashibi Roadi","address2":"Tema, Ghana","coords":{"lat":5.685369713928498,"lng":-0.03289160674590397},"placeId":"ChIJLz4rKv-A3w8R57dqySXjvfo"},
+          {"title":"Sinel Specialist Hospital","address1":"Hospital Rd","address2":"Accra, Ghana","coords":{"lat":5.656932607439582,"lng":-0.01443564907378736},"placeId":"ChIJkcj-_LmA3w8RvRKtYaBqndg"},
+          {"title":"Empat-Caiquo Medical Centre","address1":"Tsinai-agbe","address2":"Tema, Ghana","coords":{"lat":5.653163911306527,"lng":-0.022308664418029256},"placeId":"ChIJOcwfI8mA3w8RbVQKFlP8AGk"},
+          {"title":"Bengali Hospital","address1":"Elimol Street","address2":"Tema, Ghana","coords":{"lat":5.6670508254258,"lng":-0.019593664418029455},"placeId":"ChIJg3FqkuqA3w8RzcwRTjfGIEU"},
+          {"title":"MAB International Hospital","address1":"Nii Kpakpa St","address2":"Accra, Ghana","coords":{"lat":5.601311998974289,"lng":-0.2567326779098411},"placeId":"ChIJbZmHn6mZ3w8Rw3Hvidjf1xY"},
+          {"title":"Mab Medical Center","address1":"Nii Kpakpa St","address2":"Accra, Ghana","coords":{"lat":5.6013523689651405,"lng":-0.25677329325408893},"placeId":"ChIJORIZnKmZ3w8RRuUoYmTgc9o"},
+          {"title":"Mab Medicare Centre","address1":"2nd trakor St","address2":"Accra, Ghana","coords":{"lat":5.599582558637493,"lng":-0.2539915644180324},"placeId":"ChIJxRwpx6iZ3w8RDiSfmyN7qZI"},
+          {"title":"Medifem Hospital","address1":"Margaret Anderson Ave","address2":"Accra, Ghana","coords":{"lat":5.65864399694888,"lng":-0.20613777790985166},"placeId":"ChIJgfMh1RKc3w8R2SCcR1MPSLw"},
+          {"title":"Medifem Hospital","address1":"Westlands Blvd","address2":"Accra, Ghana","coords":{"lat":5.653687694422199,"lng":-0.20879085092621041},"placeId":"ChIJE_3_Vwyc3w8RORxS1SuEq5A"},
+          {"title":"Medifem hospital","address1":"52 Blohum Rd","address2":"Accra, Ghana","coords":{"lat":5.613006870879049,"lng":-0.2021070644180356},"placeId":"ChIJY4YoH_Sb3w8RIsQEjw-B-t8"},
+          {"title":"The Bank Hospital","address1":"Kpeshie","address2":"Accra, Ghana","coords":{"lat":5.585126157888305,"lng":-0.16214056441802738},"placeId":"ChIJ_cxEGsea3w8RnIcZqOb5OZU"},
+          {"title":"The bank hospital annex","address1":"1 Shippi Close","address2":"Accra, Ghana","coords":{"lat":5.583587420906598,"lng":-0.16116416441803505},"placeId":"ChIJNQJyq-Wb3w8RP48ntYhd_w0"},
+          {"title":"Euracare Advanced Diagnostics and Heart Centre","address1":"24 Peter Ala Adjetey Ave","address2":"Accra, Ghana","coords":{"lat":5.570465863889391,"lng":-0.17660473558196443},"placeId":"ChIJ_6cWwJqa3w8R5c-d1Rgst-A"},
+          {"title":"SONOTECH MEDICAL AND DIAGNOSTIC CENTER","address1":"Station Rd","address2":"Tema, Ghana","coords":{"lat":5.675843651116122,"lng":-0.016975906745919644},"placeId":"ChIJ_bM0G5CB3w8R4ejns5hoZmE"},
+          {"title":"The Trust Hospital, Osu","address1":"Oxford St","address2":"Accra, Ghana","coords":{"lat":5.562559014347445,"lng":-0.18209343558196478},"placeId":"ChIJ7cWmHIKa3w8RDAHJCBDK6HI"},
+          {"title":"The Trust Specialist Hospital","address1":"osu kukuhill osu","address2":"Angola Road, Accra, Ghana","coords":{"lat":5.560698254504713,"lng":-0.1870730355819683},"placeId":"ChIJvcQh4n-Q3w8RZnMUVR-1c4Y"},
+          {"title":"The Trust Mother \u0026 Child Hospital","address1":"Troas Cres","address2":"Accra, Ghana","coords":{"lat":5.555122294477352,"lng":-0.1792537779098602},"placeId":"ChIJz1c9SHqQ3w8RacUsix9UgbU"},
+          {"title":"VRA Clinic Accra","address1":"Lokko Rd","address2":"Accra, Ghana","coords":{"lat":5.553894455736478,"lng":-0.18074493558198013},"placeId":"ChIJHW72CXuQ3w8R8ol0LaFSDyM"},
+          {"title":"Anthon Memorial Hospital","address1":"HQVQ+7GW","address2":"Accra, Ghana","coords":{"lat":5.593268021829665,"lng":-0.2111967932540959},"placeId":"ChIJYTlKojCa3w8Rr50aZ13Hfuk"},
+          {"title":"Lakeside Clinic","address1":"North Ind. Area","address2":"Mukose link, Accra, Ghana","coords":{"lat":5.594007040947021,"lng":-0.23057266441803392},"placeId":"ChIJX3cXcY-Z3w8RXUDoADJgx9U"},
+          {"title":"mansowa herbal clinic","address1":"Abeka","address2":"Accra, Ghana","coords":{"lat":5.597181582442797,"lng":-0.24912085092619884},"placeId":"ChIJKY2yGxWZ3w8RGIpiKIrMHSo"},
+          {"title":"Mansowa herbal clinic tantra","address1":"Tantra St","address2":"Accra, Ghana","coords":{"lat":5.641150465241359,"lng":-0.2605212932540879},"placeId":"ChIJa9w6iHGZ3w8RtQQUSF3xVgg"},
+          {"title":"Eric Heymann Memorial Clinic","address1":"HPWV+2JF","address2":"Accra, Ghana","coords":{"lat":5.59506523160598,"lng":-0.2559276490737883},"placeId":"ChIJA5MYQ66Z3w8R79xwpBXW_CQ"},
+          {"title":"Nipa Hia Mmoa","address1":"Nii Tettey Kpeshie St","address2":"Accra, Ghana","coords":{"lat":5.597495239226897,"lng":-0.26161749325408046},"placeId":"ChIJEzPmzC2Z3w8RuXOA_-uIdfs"},
+          {"title":"Natural Way Herbal Clinic","address1":"HPWG+73F","address2":"Kwashieman, Ghana","coords":{"lat":5.59568950310604,"lng":-0.2748154355819743},"placeId":"ChIJOSPvCluY3w8R7X8nv6VsMbg"},
+          {"title":"Deseret Hospital Accra","address1":"5°36\u002726.9\"N 0°16","address2":"24 9th Ave, Accra, Ghana","coords":{"lat":5.607448822504689,"lng":-0.27361159325409057},"placeId":"ChIJ____HveY3w8R1jAgpAX6rlo"},
+          {"title":"Deseret Hospital","address1":"Accra","address2":"Ghana","coords":{"lat":5.603692441807353,"lng":-0.18699112209015878},"placeId":"ChIJwcnbjvSY3w8RG_f4jPNUVcI"},
+          {"title":"Deseret Hospital","address1":"JP5C+6G7","address2":"Sowutoum, Ghana","coords":{"lat":5.608075181336963,"lng":-0.2787338932540906},"placeId":"ChIJD1JRSe6Z3w8RBZNXgVkFl3g"},
+          {"title":"Deseret Hospital","address1":"Lapaz","address2":"Ghana","coords":{"lat":5.604701323458324,"lng":-0.2805952067459061},"placeId":"ChIJlUtXgeiZ3w8Rk9GKV_mIDk8"},
+          {"title":"P. A. Health Clinic","address1":"Unnamed Road","address2":"Ghana","coords":{"lat":5.597642520640386,"lng":-0.3037523220901517},"placeId":"ChIJ9cDEUNKj3w8RqLjIoJsxYqk"},
+          {"title":"Gbawe SDA Hospital","address1":"HMVW+MV7","address2":"Gbawe, Ghana","coords":{"lat":5.594230828594293,"lng":-0.30283123558196623},"placeId":"ChIJ_-k79zmj3w8RZq0YWvLV_Gg"},
+          {"title":"SDA Hospital","address1":"HMRW+9CC","address2":"Gbawe, Ghana","coords":{"lat":5.5909775702014635,"lng":-0.3039952644180266},"placeId":"ChIJHQz1g5yi3w8Ry0mFxPOAQ6o"},
+          {"title":"Mary-Lucy Hospital - Awoshie","address1":"14 Awoshie Rd","address2":"Accra, Ghana","coords":{"lat":5.592753678152632,"lng":-0.29211660674591355},"placeId":"ChIJAXIeNniY3w8RVjmqyQYKyuc"},
+          {"title":"Mary Lucy Hospital","address1":"HPV5+34V","address2":"Awoshie, Ghana","coords":{"lat":5.592800874905225,"lng":-0.29210064722137163},"placeId":"ChIJM5zGxlGZ3w8RLSMW91CHrpA"},
+          {"title":"Dora Memorial Hospital","address1":"Gbawe Bulemin","address2":"Gbawe, Ghana","coords":{"lat":5.585906672597373,"lng":-0.31849149325408055},"placeId":"ChIJoUMiEvuj3w8REi3EXNs0aDc"},
+          {"title":"Gewah Medical Centre","address1":"HM6Q+JXW","address2":"Gbawe, Ghana","coords":{"lat":5.561595923856157,"lng":-0.31002210674590636},"placeId":"ChIJGaLaSk293w8R5ZdBrMJO-vk"},
+          {"title":"All Faith Medical Centre","address1":"New Aplaku","address2":"Accra, Ghana","coords":{"lat":5.543037698874969,"lng":-0.3349667067459028},"placeId":"ChIJVVVVVVWa3w8Rv_Efpd0WPM0"},
+          {"title":"3E Medical Center","address1":"Mile 11","address2":"Ghana","coords":{"lat":5.531405137666768,"lng":-0.35173119325408564},"placeId":"ChIJ1fh85-283w8R5Gr2sOkdI-4"},
+          {"title":"Aplaku Clinic","address1":"GMFF+832","address2":"Bortianor, Ghana","coords":{"lat":5.523291107986662,"lng":-0.3273477067459196},"placeId":"ChIJ3xvWmwi93w8Rl2XfKXebY4M"},
+          {"title":"Kokrobite Community Clinic","address1":"GJ7V+JHP","address2":"Bortianor, Ghana","coords":{"lat":5.51411382582772,"lng":-0.35602470674590325},"placeId":"ChIJb9z6VWe83w8R9nWC4ii6r_I"},
+          {"title":"Kokrobite Community Clinic","address1":"GJ2H+QW4","address2":"Ngleshi Amanfro, Ghana","coords":{"lat":5.5018927432880735,"lng":-0.3701525067459177},"placeId":"ChIJl78aeHS83w8RiawV80cN3t4"},
+          {"title":"BORTIANOR HEALTH CENTRE","address1":"GM44+HXW","address2":"Bortianor, Ghana","coords":{"lat":5.5064665016843435,"lng":-0.3425230779098487},"placeId":"ChIJV-X50JK93w8R3-UycJMPeVs"},
+          {"title":"Korle Bu Teaching Hospital","address1":"Guggisberg Ave","address2":"Accra, Ghana","coords":{"lat":5.536598657200376,"lng":-0.22640373558196814},"placeId":"ChIJmcgvVTSX3w8RJq690GBuuXM"},
+          {"title":"Korle Bu Teaching Hospital","address1":"Korlebu St","address2":"Accra, Ghana","coords":{"lat":5.5385506263221975,"lng":-0.22673317790984582},"placeId":"ChIJQf-ia1qX3w8RjppYQs8JqfU"},
+          {"title":"Korle Bu Teaching Hospital Physiotherapy 2","address1":"Korle Bu Mortuary","address2":"Ring Rd W Rd, Accra, Ghana","coords":{"lat":5.540364104774851,"lng":-0.22819952949981737},"placeId":"ChIJs7j7f0CX3w8RlM3rkSEhrjc"},
+          {"title":"Holy Trinity Medical Centre","address1":"FR 12","address2":"257, 6559 Amar Koranteng St, Swanlake, Ghana","coords":{"lat":5.5872899599265935,"lng":-0.23395584907379918},"placeId":"ChIJZ9jQQZKZ3w8R0m3tQsafxu8"},
+          {"title":"COMMONWEALTH AID CLINIC","address1":"(UNCAID/CAIDi/UN-CLINIC/CAHHC) of May July Roubin Avenue","address2":"OX 305, BUA, BUXTON,, Whyte-Hills, Box CT 10651, Cantonments- Accra Ghana, Accra, Ghana","coords":{"lat":5.610114323564062,"lng":-0.1799528220901414},"placeId":"ChIJnYOAigSb3w8R6GP5Q4q0MJo"},
+          {"title":"Adabraka Polyclinic","address1":"Castle Rd","address2":"Accra, Ghana","coords":{"lat":5.562068097814569,"lng":-0.20506573558196184},"placeId":"ChIJYc7WWXWa3w8RZq7mymw6muo"},
+          {"title":"Iran Clinic","address1":"Kojo Thompson Rd","address2":"Accra, Ghana","coords":{"lat":5.567970638156782,"lng":-0.21246664907379254},"placeId":"ChIJrXJm3g6a3w8RUC8_hhG5BAQ"},
+          {"title":"IRAN CLINIC","address1":"JQ75+HV6","address2":"Akweteyman, Ghana","coords":{"lat":5.613913269344277,"lng":-0.24035123558197258},"placeId":"ChIJtTbyeXKZ3w8Rmx8La35E7ho"},
+          {"title":"Korle Bu Polyclinic","address1":"GQPG+WJH","address2":"Accra, Ghana","coords":{"lat":5.537264151203679,"lng":-0.22337943558197626},"placeId":"ChIJxU7r1DSX3w8RsthHu9VtQxg"},
+          {"title":"Supreme Specialist Scan","address1":"Accra","address2":"Ghana","coords":{"lat":5.547825962943589,"lng":-0.2325514779098592},"placeId":"ChIJKwuTEk-X3w8RMcB-vJm-2l0"},
+          {"title":"Supreme Specialist Scan \u0026 Hospital","address1":"Adinkra","address2":"Dansoman SSNIT Flats, Accra, Ghana","coords":{"lat":5.5624257862824855,"lng":-0.26946277790985684},"placeId":"ChIJQ-6Y1hOZ3w8RH410KeLLMNM"},
+          {"title":"Mamprobi Polyclinic","address1":"No 1 Ebenezer Cres","address2":"Accra, Ghana","coords":{"lat":5.538320056091648,"lng":-0.24534800674590684},"placeId":"ChIJz0kzBxWX3w8RVQ8hlxACPbQ"},
+          {"title":"Mamprobi Polyclinic Dental Unit","address1":"GQQ3+4MP","address2":"Accra, Ghana","coords":{"lat":5.538307175511489,"lng":-0.24531776679534323},"placeId":"ChIJBeJCeWWX3w8RzlPNTUCOjPw"},
+          {"title":"Barnor Hospital","address1":"Link Rd","address2":"Accra, Ghana","coords":{"lat":5.549412142342126,"lng":-0.2410822644180377},"placeId":"ChIJ2SoI40KX3w8RntOxtewoQYo"},
+          {"title":"St Thomas Eye Hospital","address1":"Kpanla St","address2":"Accra, Ghana","coords":{"lat":5.561954281603386,"lng":-0.248279993254088},"placeId":"ChIJ_____9iZ3w8RjQ_GFrsNLxI"},
+          {"title":"St. Thomas Eye Hospital - Osu Oxford st. branch","address1":"63 Anumansa St","address2":"Accra, Ghana","coords":{"lat":5.558182721607207,"lng":-0.18217926441802312},"placeId":"ChIJU2iob92R3w8RfjtzJY8d2S8"},
+          {"title":"Cocoa Clinic","address1":"15 Orgle Rd","address2":"Accra, Ghana","coords":{"lat":5.571688984182219,"lng":-0.23640176441802163},"placeId":"ChIJFegQguWZ3w8RitLY67bIR_A"},
+          {"title":"Cocoa Clinic Kaneshie","address1":"Kaneshie","address2":"Accra, Ghana","coords":{"lat":5.576101315519955,"lng":-0.244430622090146},"placeId":"ChIJ6yXSCcWZ3w8RFPMfjIxSTF4"},
+          {"title":"Cocoa clinic near Accra academy","address1":"69 Ring Rd W Rd","address2":"Accra, Ghana","coords":{"lat":5.555878954768213,"lng":-0.23003427790985853},"placeId":"ChIJe1jUWReX3w8RKDsWio3pLJk"},
+          {"title":"COCOA CLINIC, TEMA","address1":"Tema","address2":"Ghana","coords":{"lat":5.658105759173637,"lng":0.0017936932540862927},"placeId":"ChIJpUgplnR_IBARcIJ8MD1aLyo"},
+          {"title":"Kaneshie Polyclinic","address1":"Palace St","address2":"Accra, Ghana","coords":{"lat":5.574631096307312,"lng":-0.23086810674591618},"placeId":"ChIJ____P8KZ3w8R7LEibc9Vhs8"},
+          {"title":"Weija-Gbawe Municipal Hospital","address1":"south","address2":"Ghana","coords":{"lat":5.565280615221763,"lng":-0.2896037932540896},"placeId":"ChIJR9j_xRyY3w8Rdb0e4CFIH8E"},
+          {"title":"Accra regional hospital","address1":"HR94+5X5","address2":"Accra, Ghana","coords":{"lat":5.568434244276231,"lng":-0.19243260489348657},"placeId":"ChIJQce2t7mb3w8RBPQoaOmjpZM"},
+          {"title":"Franklyn Medical Centre","address1":"#1","address2":"3rd Dade Link, Accra, Ghana","coords":{"lat":5.570647506119145,"lng":-0.17649946934203964},"placeId":"ChIJYa8YMpea3w8R3YsdPE6gpiE"},
+          {"title":"THE SALVATION ARMY URBAN AID CLINIC","address1":"Maamobi","address2":"Accra, Ghana","coords":{"lat":5.594688760643134,"lng":-0.19165403558196514},"placeId":"ChIJ3RfHPymb3w8RMXFZWERGF1k"},
+          {"title":"Mamobi General Hospital","address1":"Abavana St","address2":"Accra, Ghana","coords":{"lat":5.591565568728711,"lng":-0.19908696441803153},"placeId":"ChIJQ4GPo0Wa3w8Ry1xHQsaM-X4"},
+          {"title":"Royal Star Clinic And Diagnostics Center","address1":"HQRW+6JQ","address2":"Accra, Ghana","coords":{"lat":5.5905605655449335,"lng":-0.20334652023773492},"placeId":"ChIJl-BRBkea3w8RUn3rQTMHBaE"},
+          {"title":"KING DAVID HOSPITAL - KOTOBABI","address1":"Alajo High St","address2":"Accra, Ghana","coords":{"lat":5.592856740315657,"lng":-0.20604130674591437},"placeId":"ChIJyXD2Azia3w8R8fLmp74tMF0"},
+          {"title":"Jambo Hospital - Alajo","address1":"HQXM+V2R","address2":"Accra, Ghana","coords":{"lat":5.599736970437532,"lng":-0.2175235220901417},"placeId":"ChIJC00565yb3w8RhYSvssBxvbc"},
+          {"title":"Progressive Life Center","address1":"JQ5C+4G8","address2":"Accra, Ghana","coords":{"lat":5.607830277298392,"lng":-0.22867613558197775},"placeId":"ChIJlayot36Z3w8ROP5ysCig7N4"},
+          {"title":"Nk-Salem medical centre","address1":"Achimota","address2":"near Pentecost church, Accra, Ghana","coords":{"lat":5.61496415489845,"lng":-0.22678549325408248},"placeId":"ChIJ04McxwaZ3w8RTnA2XH4BbW4"},
+          {"title":"Midway Clinic","address1":"Accra","address2":"Ghana","coords":{"lat":5.617459829408902,"lng":-0.22639743558196646},"placeId":"ChIJ-e1xUGKZ3w8R06V7KUv00mI"},
+          {"title":"Urgent Care Hospital","address1":"JQG3+3FP","address2":"Nii Okaiman East, Ghana","coords":{"lat":5.625269021477588,"lng":-0.24631766441802316},"placeId":"ChIJV93_JD6Z3w8R__CuFZdA-W4"},
+          {"title":"New Achimota Hospital","address1":"JQH2+QV5","address2":"Accra, Ghana","coords":{"lat":5.629401086868,"lng":-0.2477341779098463},"placeId":"ChIJI-2LqD6Z3w8RE34iDGx177E"},
+          {"title":"St. Matthew\u0027s Clinic","address1":"Just here street","address2":"Achimota, Ghana","coords":{"lat":5.635601406767516,"lng":-0.24273686441802944},"placeId":"ChIJ2fRHX3OZ3w8RJ0_A0M7oo8M"},
+          {"title":"BRIGHT EYE CLINIC(GH) LTD.","address1":"JQM5+76X","address2":"Accra, Ghana","coords":{"lat":5.633235803883451,"lng":-0.24188226441802296},"placeId":"ChIJXTsuo0eZ3w8RMa_PWPIhh6A"},
+          {"title":"21st clinic Annex, DOME","address1":"15 Greenhill St","address2":"Taifa, Ghana","coords":{"lat":5.642615977804747,"lng":-0.2406928779098605},"placeId":"ChIJxULfDFmZ3w8Rr7ROzkslbRY"},
+          {"title":"Champion Divine Clinic, Accra","address1":"12 Nii Ayi Kushie St","address2":"Accra, Ghana","coords":{"lat":5.642831751783656,"lng":-0.24957619325408187},"placeId":"ChIJYTqprv2Z3w8R5w9w5E7jJiU"},
+          {"title":"St. John\u0027s Hospital \u0026 Fertility Centre","address1":"Nsawam Road","address2":"Accra, Ghana","coords":{"lat":5.645295564849082,"lng":-0.24764316441802325},"placeId":"ChIJOSpZrjSZ3w8RK-PZ4HU1Jqs"},
+          {"title":"Dome Ssnit Clinic","address1":"JQW4+R69","address2":"Taifa, Ghana","coords":{"lat":5.647060045960282,"lng":-0.24435057790984205},"placeId":"ChIJtVb8v8qe3w8RwmoEQNSBlwA"},
+          {"title":"SSNIT Satellite Clinic Dome","address1":"JQW4+J3X","address2":"Taifa, Ghana","coords":{"lat":5.647028660478751,"lng":-0.24441025515594683},"placeId":"ChIJwUtGxMqe3w8RKLdp8da0MOw"},
+          {"title":"Amen Scientific Herbal Hospital","address1":"JQVG+8X9","address2":"Accra, Ghana","coords":{"lat":5.643295940325794,"lng":-0.22249590674590314},"placeId":"ChIJx51YrP-b3w8RHUWk9bK7oZU"},
+          {"title":"Amen Scientific Herbal Hospital","address1":"JQX5+JQ6","address2":"Taifa, Ghana","coords":{"lat":5.6490960210775665,"lng":-0.2405783490737856},"placeId":"ChIJK-z4TbSe3w8RU7mZK6Fm-QM"},
+          {"title":"Amen Scientific Herbal Hospital","address1":"Tema New Town","address2":"Tema, Ghana","coords":{"lat":5.670150452836217,"lng":-0.04608669325409709},"placeId":"ChIJn1We4i6B3w8R3St06NhqOlE"},
+          {"title":"PrimeVision Medical Center","address1":"Unnamed Road","address2":"Taifa, Ghana","coords":{"lat":5.6535155317735875,"lng":-0.25093532023773957},"placeId":"ChIJiXCb97-f3w8RyRTpTG1DZ4U"},
+          {"title":"Glenof Fertility And General Hospital","address1":"MQ42+MV5","address2":"Taifa, Ghana","coords":{"lat":5.656640405582718,"lng":-0.24774187790984392},"placeId":"ChIJTXFRXM6e3w8R1iYvuMDNdd8"},
+          {"title":"POWER SPECIALIST HERBAL CLINIC","address1":"Kwabenya-Pokuase Road","address2":"Kwabenya, Ghana","coords":{"lat":5.689762226640631,"lng":-0.2557127779098467},"placeId":"ChIJayBnukqf3w8RAR44_OM59mc"},
+          {"title":"Power Specialist Herbal Clinic","address1":"St Johns - Dome - Kwabenya - Brekusu Rd","address2":"Taifa, Ghana","coords":{"lat":5.6614374765029405,"lng":-0.23751533558196147},"placeId":"ChIJgaufjOWf3w8RPBJNHRSAwiA"},
+          {"title":"Mercedarian Clinic/Spine Specialist","address1":"Awuletey St","address2":"Accra, Ghana","coords":{"lat":5.555105355316678,"lng":-0.17924520171356706},"placeId":"ChIJocdpynuQ3w8RdCEVgRo74nM"},
+          {"title":"Osu Maternity Home","address1":"Salem Ave","address2":"Accra, Ghana","coords":{"lat":5.553795957943241,"lng":-0.18500962023773937},"placeId":"ChIJ00PVqX2Q3w8RRPBptIk6WIE"},
+          {"title":"Pentecost Hospital","address1":"MR7V+J24","address2":"Madina, Ghana","coords":{"lat":5.664029721106457,"lng":-0.1574260932540894},"placeId":"ChIJOZPBp7ec3w8RQ1dF7YDsh-E"},
+          {"title":"Madina Polyclinic - Rawlings Circle","address1":"MR9M+2WW","address2":"Madina, Ghana","coords":{"lat":5.667592712673642,"lng":-0.1651496490737947},"placeId":"ChIJ6whrkMCc3w8RAcBt2mM5PBM"},
+          {"title":"Kekele Poly Clinic","address1":"Abiola\u0027s Ave","address2":"Madina, Ghana","coords":{"lat":5.679764915136226,"lng":-0.16049616441802028},"placeId":"ChIJxVhAqh6d3w8Rnq9cAJDBkc0"},
+          {"title":"Christleads Missions \u0026 Medical Services","address1":"Madina","address2":"Ghana","coords":{"lat":5.680114712456586,"lng":-0.17598309325409067},"placeId":"ChIJ-d0w4eSc3w8RAVAT8czDE3w"},
+          {"title":"International Health Care Center","address1":"Plot 650 Ecomog","address2":"Haatso, Accra, Ghana","coords":{"lat":5.67205736255496,"lng":-0.20434963558196406},"placeId":"ChIJOdQxy0Cc3w8RrJZ9_B0aeQE"},
+          {"title":"Sam J (Annex) Hospital","address1":"MQGW+PQ2","address2":"Haatso, Ghana","coords":{"lat":5.676801759602028,"lng":-0.20312029325408876},"placeId":"ChIJmfk6_9id3w8RyLNnNfVqiBM"},
+          {"title":"SAMJ Specialist Hospital","address1":"Haatso","address2":"Ghana","coords":{"lat":5.67746815688491,"lng":-0.20302950674591758},"placeId":"ChIJ5XwTL0ac3w8R6as7xrKS_rs"},
+          {"title":"CMRF CLINIC","address1":"MQFV+53J","address2":"Haatso, Ghana","coords":{"lat":5.673002306961901,"lng":-0.20739815092620573},"placeId":"ChIJ31LtxDic3w8ReyjQn9C8934"},
+          {"title":"Kwabenya Community Hospital","address1":"MQR2+CVW","address2":"Kwabenya, Ghana","coords":{"lat":5.691095023175906,"lng":-0.24779959325408774},"placeId":"ChIJzai_W2Sf3w8R0hY0G42ZCro"},
+          {"title":"Greater Grace Hospital","address1":"Pantang Abokobi Rd","address2":"Adenta Municipality, Ghana","coords":{"lat":5.718307921260512,"lng":-0.17389834907378443},"placeId":"ChIJHYmnQW-d3w8RiDMyI9fBELM"},
+          {"title":"Zoe Royal Hospital","address1":"ADENTA PANTANG ROAD","address2":"ACCRA GHANA, Adenta Municipality, Ghana","coords":{"lat":5.714772569707611,"lng":-0.1740951797622725},"placeId":"ChIJFWDAom6d3w8R2KXwmg3GXIg"},
+          {"title":"Mother-Love Hospital","address1":"Greater Accra","address2":"R40, Adenta Municipality, Ghana","coords":{"lat":5.716729693647685,"lng":-0.16624892209014863},"placeId":"ChIJsytcVkKd3w8R1WxlE94dC94"},
+          {"title":"FOCOS Orthopedic Hospital","address1":"8 Teshie Street","address2":"Pantang West, Pantang West, Ghana","coords":{"lat":5.727274216463663,"lng":-0.18528426441803747},"placeId":"ChIJcUnvpH-d3w8Rs_k_puhStv4"},
+          {"title":"E\u0026E Medical Centre","address1":"2c Klanaa Ave","address2":"Adenta Municipality, Ghana","coords":{"lat":5.706963313487965,"lng":-0.16529167790984678},"placeId":"ChIJ33weDT-d3w8R0V3cD9OU5Pk"},
+          {"title":"Oyoko Clinic","address1":"Unnamed Rd","address2":"Adenta Municipality, Ghana","coords":{"lat":5.7039613867417875,"lng":-0.15241386441803284},"placeId":"ChIJA4b8eTSd3w8RBrde9JOhKhE"},
+          {"title":"Crystal Eye Clinic","address1":"7","address2":"Adenta Municipality, Ghana","coords":{"lat":5.70623896247919,"lng":-0.14680263558197515},"placeId":"ChIJvcOTrMuC3w8RMYqj6hDi-cU"},
+          {"title":"Doku Memorial Clinic","address1":"MRJM+4QP","address2":"Madina, Ghana","coords":{"lat":5.680332153919285,"lng":-0.1655438355819694},"placeId":"ChIJj0pDUdyc3w8RHKv27k9gkk0"},
+          {"title":"PASSION CLINIC","address1":"GH POST GPS GM-025-1276 Passion Hill Street","address2":"Near Emmanuel Villa, Madina, Ghana","coords":{"lat":5.673033698455786,"lng":-0.1521960067459105},"placeId":"ChIJEwXhYMyc3w8RCFFRbD4ND0g"},
+          {"title":"Albany Specialist Clinic","address1":"5 Bethel Street North Legon – Accra","address2":"Madina, Ghana","coords":{"lat":5.670139429933953,"lng":-0.18373435092620793},"placeId":"ChIJQasyW_Sc3w8R3U2Ohsw0ZsY"},
+          {"title":"Acacia Medical Centre","address1":"Justice E.P. Sowah Ave","address2":"Accra, Ghana","coords":{"lat":5.63354518999377,"lng":-0.15754317790986017},"placeId":"ChIJxfPgvU-b3w8RyG93N0osR-k"},
+          {"title":"End Point Homeopathic Clinic","address1":"Shell Signboard","address2":"Spintex Rd, Accra, Ghana","coords":{"lat":5.634463741156993,"lng":-0.11113233558196045},"placeId":"ChIJx7gZuWKE3w8RBuUQcNz8pBs"},
+          {"title":"Spintex Community Hospital","address1":"Okpoi Gonno","address2":"Accra, Ghana","coords":{"lat":5.637689761474092,"lng":-0.10651416441803674},"placeId":"ChIJCd4qdHuE3w8RTFjlEN2yoRQ"},
+          {"title":"Peace And Love Hospital Baatsona","address1":"Accra","address2":"Ghana","coords":{"lat":5.630334312190148,"lng":-0.096686222090141},"placeId":"ChIJxbdgc2yE3w8Ruw_yHalU0GQ"},
+          {"title":"Lekma Polyclinic","address1":"Buade Ave","address2":"Accra, Ghana","coords":{"lat":5.613100250276971,"lng":-0.08902280674591534},"placeId":"ChIJi3P7tDCE3w8RU1IKalaasbM"},
+          {"title":"Bright ALK Herbal Clinic","address1":"Tse Addo High St","address2":"Accra, Ghana","coords":{"lat":5.579540949960435,"lng":-0.14446447790985806},"placeId":"ChIJZVdbe0mF3w8RPz6NrQSF1WI"},
+          {"title":"Rhema Rapha Medical Center","address1":"Accra","address2":"Ghana","coords":{"lat":5.576538678638931,"lng":-0.1394657932540988},"placeId":"ChIJ-c9k8beF3w8RmmdQgHX9ZIA"},
+          {"title":"City of Hope Hospital and Fertility Centre","address1":"Lashibi","address2":"Constellations Ave, Tema, Ghana","coords":{"lat":5.6394711624574665,"lng":-0.056668408598337106},"placeId":"ChIJA9o1FMiG3w8RW0IxP1CAghs"},
+          {"title":"City of Hope Fertility Center","address1":"Tema","address2":"Ghana","coords":{"lat":5.63947212885285,"lng":-0.056685964418035084},"placeId":"ChIJ0yzlELaG3w8RmaQpnjtfbNU"},
+          {"title":"STAR OF HOPE MEDICAL CENTER","address1":"JPGW+39X","address2":"Nii Okaiman East, Ghana","coords":{"lat":5.625206948614383,"lng":-0.25401423558197855},"placeId":"ChIJz9SemSKZ3w8RzydKur5rZ4k"},
+          {"title":"Ghana-Canada Medical Centre","address1":"L48","address2":"Accra, Ghana","coords":{"lat":5.646489407116027,"lng":-0.12368507790984751},"placeId":"ChIJ6ZcJiGKD3w8RBlV4UwC63zI"},
+          {"title":"Gazamah Comm. Eye Centre","address1":"Kotobabi Rd","address2":"Accra, Ghana","coords":{"lat":5.592394763503191,"lng":-0.20454586627044247},"placeId":"ChIJhan21U6a3w8RGTIJKswjwZA"},
+          {"title":"Trinity Community Hospital","address1":"Lebanon","address2":"Ghana","coords":{"lat":5.709623897406937,"lng":-0.050561593254088155},"placeId":"ChIJZQxhaMeB3w8RKr3kOcSy0jk"},
+          {"title":"Sakumono Community Hospital","address1":"Sakumono Broadway","address2":"Sakumono, Ghana","coords":{"lat":5.622350182206279,"lng":-0.06280597790985887},"placeId":"ChIJLT2OVJaG3w8R0IWIrrdsJbo"},
+          {"title":"Resolve Medical Services","address1":"106 Mansa asiape street","address2":"P.O.Box Sr 158, spintex road, Accra, Ghana","coords":{"lat":5.635494311415844,"lng":-0.07844136441802485},"placeId":"ChIJk6CSSwOE3w8RmTkC1YFc2Mo"},
+          {"title":"Hijama Herbal Clinic","address1":"Libya Quaters","address2":"Madina, Ghana","coords":{"lat":5.673494162761314,"lng":-0.1803534220901537},"placeId":"ChIJx8yNJaud3w8RIRPCUvLvVq0"},
+          {"title":"Harmony Clinic","address1":"Agbogba - Ashongman Rd","address2":"Agbogba, Ghana","coords":{"lat":5.6759136650298245,"lng":-0.1967679355819696},"placeId":"ChIJDaZSNkWc3w8R3OOMdzwLLuo"},
+          {"title":"AKCESS DENTAL CLINIC","address1":"Bethel street","address2":"Ghana","coords":{"lat":5.669759233635918,"lng":-0.1826339932540888},"placeId":"ChIJ3R_ZcfSc3w8RAxsslFkIzSM"},
+          {"title":"Efan Victory Clinic","address1":"Batsonaa Hwy","address2":"Accra, Ghana","coords":{"lat":5.624425853519746,"lng":-0.0906530067459066},"placeId":"ChIJIZBKKT6E3w8RYLlB-ncD-Hw"},
+          {"title":"atta quarshie morton memorial hospital","address1":"Kwame Nkrumah Ave","address2":"Accra, Ghana","coords":{"lat":5.559751978135732,"lng":-0.2132964755325406},"placeId":"ChIJa8SRqaeQ3w8RQIwjYvSeHcg"},
+          {"title":"Graphic Clinic","address1":"HQ5Q+93C","address2":"Accra, Ghana","coords":{"lat":5.558452180585887,"lng":-0.2123287067459123},"placeId":"ChIJ719w-qaQ3w8Ra__6oQLL61I"},
+          {"title":"Odorna Medical Centre","address1":"Adama Ave Accra Republic of","address2":"Accra, Ghana","coords":{"lat":5.559067142148884,"lng":-0.21558420674590906},"placeId":"ChIJm-6CqaeQ3w8RkouHqUWAnqM"},
+          {"title":"Jubail Hospital","address1":"Sakumono","address2":"Ghana","coords":{"lat":5.625742481867813,"lng":-0.05194973558197313},"placeId":"ChIJ0yMR7sGG3w8RdvtoJQ6PwgM"},
+          {"title":"Provita Specialist Hospital","address1":"Tsinai-agbe","address2":"Tema, Ghana","coords":{"lat":5.652291223449747,"lng":-0.019872306745920554},"placeId":"ChIJrZQS58mA3w8RN7Tl5vZX7g8"},
+          {"title":"VALCO Hospital","address1":"Heavy Industrial Area","address2":"Tema, Ghana","coords":{"lat":5.6689009909080115,"lng":0.0346380644180444},"placeId":"ChIJj-bGBR9_IBARJ-XbmlQl-_I"},
+          {"title":"Trust Clinic, Adenta","address1":"Adenta Municipality","address2":"Ghana","coords":{"lat":5.705925743086826,"lng":-0.14819272023773866},"placeId":"ChIJQ3LBGMuC3w8Rcjxt4z21Ym0"},
+          {"title":"KRISPAT EAR CENTRE,TEMA-GHANA","address1":"Tema","address2":"Ghana","coords":{"lat":5.665569307532477,"lng":-0.01883880622099987},"placeId":"ChIJ870XjL-A3w8RyiP5gN41hMI"},
+          {"title":"Tema General Hospital","address1":"Hospital Rd","address2":"Tema, Ghana","coords":{"lat":5.675607411668594,"lng":-0.02480123558197933},"placeId":"ChIJqQZdSe6A3w8R0OIDJTlFTcM"},
+          {"title":"Nostra Klinik","address1":"Mango Lane","address2":"Tema, Ghana","coords":{"lat":5.675724713930449,"lng":-0.03206363558197367},"placeId":"ChIJQQkkH3uB3w8R688DpCQhFbU"},
+          {"title":"Optic Somiah","address1":"Kokomlemle","address2":"Accra, Ghana","coords":{"lat":5.577386265963584,"lng":-0.20848340859833447},"placeId":"ChIJXQ4THy-b3w8R1SsgP-3gg10"},
+          {"title":"Marie Stopes Ghana, Kokomlemle Centre","address1":"Homowo Ave","address2":"Accra, Ghana","coords":{"lat":5.577341616447911,"lng":-0.21353396441803785},"placeId":"ChIJoWiSgROa3w8RDhER6whR43Y"},
+          {"title":"Mission Clinic","address1":"Accra New Town","address2":"Accra, Ghana","coords":{"lat":5.582611479006689,"lng":-0.2158390779098429},"placeId":"ChIJu-MhpyKa3w8RBth7qREqHVs"},
+          {"title":"ENTRANCE UNIVERSITY HOSPITAL","address1":"19 Abele Rd","address2":"Accra, Ghana","coords":{"lat":5.578607507764662,"lng":-0.209983593254095},"placeId":"ChIJAZajYwib3w8R4dk8oq9w_P0"},
+          {"title":"Mallam Atta Medical Clinic","address1":"HQHR+GMF","address2":"Accra, Ghana","coords":{"lat":5.578814572697089,"lng":-0.20831810674590834},"placeId":"ChIJH-AIXhSa3w8R8v9FSqO70iM"},
+          {"title":"Spine Thérapeutique Center","address1":"HQM8+V63","address2":"Accra, Ghana","coords":{"lat":5.584669242008009,"lng":-0.23447669325408427},"placeId":"ChIJ3Ql7e-GZ3w8R-P5vrfpBf-U"},
+          {"title":"Greenhand Clinic","address1":"Greenhand Street","address2":"Accra, Ghana","coords":{"lat":5.582933393882008,"lng":-0.22903763558197232},"placeId":"ChIJFcSC0IqZ3w8RiVjqirdhxcc"},
+          {"title":"Theresa\u0027s Clinic Ltd","address1":"Orgle Rd","address2":"Accra, Ghana","coords":{"lat":5.578551325744782,"lng":-0.2345825355819664},"placeId":"ChIJRdyK7O2Z3w8RsLXzNFO0hl4"},
+          {"title":"Trust Clinic","address1":"Snit flat Road","address2":"Taifa, Ghana","coords":{"lat":5.654500713078248,"lng":-0.24332566441802594},"placeId":"ChIJ_x5DGVGf3w8R_8FAEfGgryU"},
+          {"title":"Dome Community Clinic","address1":"Dome Vulganizer","address2":"Dome, Ghana","coords":{"lat":5.652278526264416,"lng":-0.23824446441802927},"placeId":"ChIJIWEcS6ef3w8RioD7lmN1gIg"},
+          {"title":"Sape Agbo Memorial Hospital","address1":"New Town Rd","address2":"Accra, Ghana","coords":{"lat":5.581402939078431,"lng":-0.20940822394255987},"placeId":"ChIJX9hdwBWa3w8ROCMIOW1BrQ8"},
+          {"title":"Raphal Medical Centre","address1":"5th Ave","address2":"Tema, Ghana","coords":{"lat":5.662424019329475,"lng":-0.020878306745903963},"placeId":"ChIJARvGGMeA3w8RLtCXM5KiL08"}
+        ],
+        "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17},
+        "mapsApiKey": "AIzaSyCTdBaymYMI1Z1R6dYYLlkIAWoWnpnClUE"
+      };
+
+      function initMap() {
+        new LocatorPlus(CONFIGURATION);
+      }
+    </script>
+    <script id="locator-result-items-tmpl" type="text/x-handlebars-template">
+      {{#each locations}}
+        <li class="location-result" data-location-index="{{index}}">
+          <button class="select-location">
+            <h2 class="name">{{title}}</h2>
+          </button>
+          <div class="address">{{address1}}<br>{{address2}}</div>
+          <button class="details-button">
+            View details
+          </button>
+          {{#if travelDistanceText}}
+            <div class="distance">{{travelDistanceText}}</div>
+          {{/if}}
+          {{#if ../showDirectionsButton}}
+            <button class="show-directions" title="Show directions to this location">
+              <svg width="34" height="34" viewBox="0 0 34 34"
+                   fill="none" xmlns="http://www.w3.org/2000/svg" alt="Show directions">
+                <path d="M17.5867 9.24375L17.9403 8.8902V8.8902L17.5867 9.24375ZM16.4117 9.24375L16.7653 9.59731L16.7675 9.59502L16.4117 9.24375ZM8.91172 16.7437L8.55817 16.3902L8.91172 16.7437ZM8.91172 17.9229L8.55817 18.2765L8.55826 18.2766L8.91172 17.9229ZM16.4117 25.4187H16.9117V25.2116L16.7652 25.0651L16.4117 25.4187ZM16.4117 25.4229H15.9117V25.63L16.0582 25.7765L16.4117 25.4229ZM25.0909 17.9229L25.4444 18.2765L25.4467 18.2742L25.0909 17.9229ZM25.4403 16.3902L17.9403 8.8902L17.2332 9.5973L24.7332 17.0973L25.4403 16.3902ZM17.9403 8.8902C17.4213 8.3712 16.5737 8.3679 16.0559 8.89248L16.7675 9.59502C16.8914 9.4696 17.1022 9.4663 17.2332 9.5973L17.9403 8.8902ZM16.0582 8.8902L8.55817 16.3902L9.26527 17.0973L16.7653 9.5973L16.0582 8.8902ZM8.55817 16.3902C8.0379 16.9105 8.0379 17.7562 8.55817 18.2765L9.26527 17.5694C9.13553 17.4396 9.13553 17.227 9.26527 17.0973L8.55817 16.3902ZM8.55826 18.2766L16.0583 25.7724L16.7652 25.0651L9.26517 17.5693L8.55826 18.2766ZM15.9117 25.4187V25.4229H16.9117V25.4187H15.9117ZM16.0582 25.7765C16.5784 26.2967 17.4242 26.2967 17.9444 25.7765L17.2373 25.0694C17.1076 25.1991 16.895 25.1991 16.7653 25.0694L16.0582 25.7765ZM17.9444 25.7765L25.4444 18.2765L24.7373 17.5694L17.2373 25.0694L17.9444 25.7765ZM25.4467 18.2742C25.9631 17.7512 25.9663 16.9096 25.438 16.3879L24.7354 17.0995C24.8655 17.2279 24.8687 17.4363 24.7351 17.5716L25.4467 18.2742Z" fill="#7e7efd"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19 19.8333V17.75H15.6667V20.25H14V16.9167C14 16.4542 14.3708 16.0833 14.8333 16.0833H19V14L21.9167 16.9167L19 19.8333Z" fill="#7e7efd"/>
+                <circle cx="17" cy="17" r="16.5" stroke="#7e7efd"/>
+              </svg>
+            </button>
+          {{/if}}
+        </li>
+      {{/each}}
+    </script>
+    <script id="locator-details-tmpl" type="text/x-handlebars-template">
+      <button class="back-button">
+        <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/arrow_back/v11/24px.svg" alt=""/>
+        Back
+      </button>
+      <header>
+        <div class="banner">
+          <svg width="3" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9976 11.5003C22.9976 13.2137 22.7083 14.9123 21.8025 16.7056C18.6321 22.9832 12.7449 24.3314 12.2758 30.7085C12.2448 31.1294 11.9286 31.4744 11.4973 31.4744C11.0689 31.4744 10.7527 31.1294 10.7218 30.7085C10.2527 24.3314 4.3655 22.9832 1.19504 16.7056C0.289306 14.9123 0 13.2137 0 11.5003C0 5.13275 5.14557 0 11.5003 0C17.852 0 22.9976 5.13275 22.9976 11.5003Z" fill="#4285F4"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" transform="translate(5.5,5.5)" d="M6 8.84091L9.708 11L8.724 6.92961L12 4.19158L7.6856 3.83881L6 0L4.3144 3.83881L0 4.19158L3.276 6.92961L2.292 11L6 8.84091Z" fill="#FBE15C"/>
+          </svg>
+        </div>
+        <h2>{{location.title}}</h2>
+      </header>
+      {{#if location.travelDistanceText}}
+        <div class="distance">{{location.travelDistanceText}} away</div>
+      {{/if}}
+      <div class="address">
+        {{location.address1}}<br>
+        {{location.address2}}
+      </div>
+      <div class="atmosphere">
+        {{#if place.rating}}
+          <span class="star-rating-numeric">{{place.rating}}</span>
+          <span>
+            {{#each place.fullStarIcons}}
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star/v15/24px.svg"
+                   alt="" class="star-icon"/>
+            {{/each}}
+            {{#each place.halfStarIcons}}
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star_half/v17/24px.svg"
+                   alt="" class="star-icon"/>
+            {{/each}}
+            {{#each place.emptyStarIcons}}
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star_outline/v9/24px.svg"
+                   alt="" class="star-icon"/>
+            {{/each}}
+          </span>
+        {{/if}}
+        {{#if place.user_ratings_total}}
+          <a href="{{place.url}}" target="_blank">{{place.user_ratings_total}} reviews</a>
+        {{else}}
+          <a href="{{place.url}}" target="_blank">View on Google Maps</a>
+        {{/if}}
+        {{#if place.price_level}}
+          &bull;
+          <span class="price-dollars">
+            {{#each place.dollarSigns}}${{/each}}
+          </span>
+        {{/if}}
+      </div>
+      <hr/>
+      {{#if place.opening_hours}}
+        <div class="hours contact">
+          <img src="https://fonts.gstatic.com/s/i/googlematerialicons/schedule/v12/24px.svg"
+               alt="Opening hours" class="icon"/>
+          <div class="right">
+            {{#each place.openingHoursSummary}}
+              <div>
+                <span class="weekday">{{days}}</span>
+                <span class="hours">{{hours}}</span>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      {{#if place.website}}
+        <div class="website contact">
+          <img src="https://fonts.gstatic.com/s/i/googlematerialicons/public/v10/24px.svg"
+               alt="Website" class="icon"/>
+          <div class="right">
+            <a href="{{place.website}}">{{place.websiteDomain}}</a>
+          </div>
+        </div>
+      {{/if}}
+      {{#if place.formatted_phone_number}}
+        <div class="phone contact">
+          <img src="https://fonts.gstatic.com/s/i/googlematerialicons/phone/v10/24px.svg"
+               alt="Phone number" class="icon"/>
+          <div class="right">
+            {{place.formatted_phone_number}}
+          </div>
+        </div>
+      {{/if}}
+      {{#if place.html_attributions}}
+        {{#each place.html_attributions}}
+          <p class="attribution">{{{this}}}</p>
+        {{/each}}
+      {{/if}}
+    </script>
+
+
+</head>
+<body>
+  <nav>
+    <div class="wrapper">
+      <div class="logo"><a href="index.html">E L A</a></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <li><a href="index.html">Home</a></li>
+ 
+        <li>
+          <a href="index.html #maps" class="desktop-item">Maps</a>
+          <input type="checkbox" id="showMega">
+          <label for="showMega" class="mobile-item">Maps</label>
+          <div class="mega-box">
+            <div class="content">
+              <div class="row">
+                <img src="img/Doc.jpg" alt="">
+              </div>
+              <div class="row">
+                <header>Ghana Police Service</header>
+                <ul class="mega-links">
+                  <li><a href="Police map.html">View Map</a></li>
+                  <li><a href="https://police.gov.gh/en/">Visit Police Service Site</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>Ghana Fire Service</header>
+                <ul class="mega-links">
+                  <li><a href="Fire Map.html">View Map</a></li>
+                  <li><a href="https://www.gnfs.gov.gh/">Visit Fire Service Site</a></li>
+                                 </ul>
+              </div>
+              <div class="row">
+                <header>Ghana Health Service</header>
+                <ul class="mega-links">
+                  <li><a href="Hospital map.html">View Map</a></li>
+                  <li><a href="https://www.moh.gov.gh/">Visit Health Service Site</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html #about us">About Us</a></li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+
+  
+  <pre class="tab"> </pre>
+  <pre class="tab"> </pre>
+  <pre class="tab"> </pre>
+ 
+
+
+  <div id="map-container">
+    <div id="locations-panel">
+      <div id="locations-panel-list">
+        <header>
+          <h1 class="search-title">
+            <img src="https://fonts.gstatic.com/s/i/googlematerialicons/place/v15/24px.svg"/>
+            Find a Hospital near you
+          </h1>
+          <div class="search-input">
+            <input id="location-search-input" placeholder="Enter your street address or town name">
+            <div id="search-overlay-search" class="search-input-overlay search">
+              <button id="location-search-button">
+                <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search"/>
+              </button>
+            </div>
+          </div>
+        </header>
+        <div class="section-name" id="location-results-section-name">
+          All locations
+        </div>
+        <div class="results">
+          <ul id="location-results-list"></ul>
+        </div>
+      </div>
+      <div id="locations-panel-details"></div>
+    </div>
+    <div id="map"></div>
+  </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTdBaymYMI1Z1R6dYYLlkIAWoWnpnClUE&callback=initMap&libraries=places,geometry&channel=GMPSB_locatorplus_v4_cABCDE" async defer></script>
+
+</body>
+</html>

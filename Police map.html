@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="css/content.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="icon" href="img/28799812331.png" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://www.gstatic.com/external_hosted/handlebars/v4.7.6/handlebars.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Location Assistant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="css/police.css" rel="stylesheet">
+<script src="js/police.js"></script>
+
+
+
+        
+        
+        <script>
+          const CONFIGURATION = {
+            "locations": [
+              {"title":"Ghana Police Service, Accra Central Divisional Headquarters, Ministries","address1":"Liberia Road","address2":"Accra, Ghana","coords":{"lat":5.550790122568977,"lng":-0.19817871534424158},"placeId":"ChIJt4pHE5CQ3w8RYyqTlOn0kPk"},
+              {"title":"James Town Police Station - HQ","address1":"GQPP+HCP","address2":"Accra, Ghana","coords":{"lat":5.536537390177263,"lng":-0.21396141534423263},"placeId":"ChIJUSetFMaQ3w8Rt3-KM0FXWgg"},
+              {"title":"Old Fadama Police Station","address1":"HQ2G+WQG","address2":"Accra, Ghana","coords":{"lat":5.552385568080846,"lng":-0.22305992883605574},"placeId":"ChIJMVFIaq2Q3w8RfK59Xkg9PLY"},
+              {"title":"Nima Police Station","address1":"Ring Road Central","address2":"Accra, Ghana","coords":{"lat":5.574459177880671,"lng":-0.20045102209014676},"placeId":"ChIJXeGSbG6a3w8RULmyMKQPmTo"},
+              {"title":"Nima police Mosque","address1":"HRF2+H25","address2":"Accra, Ghana","coords":{"lat":5.57433657325168,"lng":-0.20040731971282977},"placeId":"ChIJz9juaW6a3w8RtdWFvWenQAU"},
+              {"title":"HOLY GARDENS POLICE STATION CIRCLE","address1":"Hearts Link","address2":"Accra, Ghana","coords":{"lat":5.57068064638133,"lng":-0.21420681104507233},"placeId":"ChIJR5sl-Zqb3w8R7LzjDH2Pqo4"},
+              {"title":"Kotobabi Police Station","address1":"Kotobabi Rd","address2":"Accra, Ghana","coords":{"lat":5.591653264714748,"lng":-0.203986828836058},"placeId":"ChIJW8rEy0ea3w8R4Ex7tyW6Sw4"},
+              {"title":"Dzorwulu Police Station","address1":"Accra","address2":"Ghana","coords":{"lat":5.609755862826224,"lng":-0.19836736441802394},"placeId":"ChIJY6I5m7Gb3w8RvVfv2AfVu4k"},
+              {"title":"Lakeside Police station","address1":"Elmina St","address2":"Accra, Ghana","coords":{"lat":5.697573805687435,"lng":-0.12710385092621124},"placeId":"ChIJG8fyFuaC3w8RjU7nzrKrbYQ"},
+              {"title":"ROMAN RIDGE POLICE STATION","address1":"Accra","address2":"Ghana","coords":{"lat":5.607346941543009,"lng":-0.1989378288360677},"placeId":"ChIJzR8NTLKb3w8Ru3i8zirn0es"},
+              {"title":"Adabraka Police Station","address1":"Accra","address2":"Ghana","coords":{"lat":5.603717967858538,"lng":-0.18696439999999814},"placeId":"ChIJtxg1Rdmb3w8Rc-qOPVd6fTM"},
+              {"title":"Police Station - Nungua","address1":"Accra","address2":"Ghana","coords":{"lat":5.594989028064314,"lng":-0.0884270288360689},"placeId":"ChIJKUDeM8-F3w8RTz7jGUNPXQI"},
+              {"title":"Teshie Police Station","address1":"Kpeshie","address2":"Accra, Ghana","coords":{"lat":5.575795703124509,"lng":-0.1119946288360607},"placeId":"ChIJa-M5GT2F3w8Rs9bGQZaieYk"},
+              {"title":"Greda Estates Police Post","address1":"Accra","address2":"Ghana","coords":{"lat":5.613367070351822,"lng":-0.10686648220901818},"placeId":"ChIJc5SesFCE3w8RoSx6WcIsAN0"},
+              {"title":"Airport Police Station","address1":"Liberation Rd","address2":"Accra, Ghana","coords":{"lat":5.608379099088156,"lng":-0.17668248650818175},"placeId":"ChIJeTfSohyb3w8RwCV83Eje_1k"},
+              {"title":"Airport Police Station","address1":"DN Uber Drv 2","address2":"Airport Rd, Accra, Ghana","coords":{"lat":5.60757770652032,"lng":-0.173165805522546},"placeId":"ChIJRfnf2wKb3w8RgCgvDVUCCkA"},
+              {"title":"Police Station","address1":"Pantang Abokobi Rd","address2":"Adenta Municipality, Ghana","coords":{"lat":5.714475449828824,"lng":-0.19861492883606946},"placeId":"ChIJA56Pm_ud3w8RYPmfQ9FFZo0"},
+              {"title":"Police Station","address1":"Tema","address2":"Ghana","coords":{"lat":5.652531409593397,"lng":-0.006786828836065073},"placeId":"ChIJY-dSi66A3w8RA9lPhwiMkUw"},
+              {"title":"Tema Community Two Police Station","address1":"Salifu Dagati Ext","address2":"Tema, Ghana","coords":{"lat":5.631618438980772,"lng":-0.013015084655769726},"placeId":"ChIJU53EMkSH3w8R0qnrciMPzsc"},
+              {"title":"Scc Police Station - Gecil estates","address1":"HM34+7XP","address2":"Mile 11, Ghana","coords":{"lat":5.553209605112121,"lng":-0.34255029999999076},"placeId":"ChIJ_0CT2tC83w8RK1pYTisBKy8"},
+              {"title":"East-Legon Police Station","address1":"Boundary Rd","address2":"Accra, Ghana","coords":{"lat":5.631731753405524,"lng":-0.15199941534423278},"placeId":"ChIJxSG8WEyb3w8R9iBWFFY64y0"},
+              {"title":"Legon Police Station","address1":"Accra","address2":"Ghana","coords":{"lat":5.650546412732401,"lng":-0.1792263576721198},"placeId":"ChIJeQyWZIOc3w8RdB_eeNemyzE"},
+              {"title":"Ghana Police Service (Legon Station)","address1":"Legon E Rd","address2":"Accra, Ghana","coords":{"lat":5.650508873556381,"lng":-0.179635628836059},"placeId":"ChIJweAjeoOc3w8RVS0aYCEGo50"},
+              {"title":"Tesano Police Station","address1":"Abeka Junction","address2":"Accra, Ghana","coords":{"lat":5.6050952357476636,"lng":-0.22549998650817082},"placeId":"ChIJk8bS7teb3w8ROgfwcqX2y40"},
+              {"title":"National Police Academy And Training School","address1":"POLICE TRAING SCHOOL","address2":"Accra, Ghana","coords":{"lat":5.5936872156252795,"lng":-0.2210649999999914},"placeId":"ChIJaxkGniia3w8R-nfOBaVSUUs"},
+              {"title":"Lapaz Station - Lapaz","address1":"Kwame St","address2":"Lapaz, Ghana","coords":{"lat":5.606314616119915,"lng":-0.24858640363541573},"placeId":"ChIJcbiAngmZ3w8RQqj90XPCPkk"},
+              {"title":"Mile 7 police station","address1":"JQJ6+G98","address2":"Accra, Ghana","coords":{"lat":5.631365669099696,"lng":-0.23907172883605776},"placeId":"ChIJUaT0dBOZ3w8Rf7vWIOepp1g"},
+              {"title":"Israel Police Station","address1":"5°37\u002752.9\"N 0°16\u002707.","address2":"Pinto Rd, Accra, Ghana","coords":{"lat":5.630945947365681,"lng":-0.26870782883606115},"placeId":"ChIJDzkiotuY3w8ReFwmOKLfubw"},
+              {"title":"Ofankor Police Station","address1":"MP7M+9R9","address2":"Taifa, Ghana","coords":{"lat":5.663421043745458,"lng":-0.2653998000000035},"placeId":"ChIJ1Y6MEiGf3w8RN4ietxZFA5I"},
+              {"title":"MP5M+8VC","address1":"MP5M+8VC Taifa","address2":"Ghana","coords":{"lat":5.6583335862718895,"lng":-0.2653808576721173},"placeId":"GhIJJzEIrByiFkARaeor_qX70L8"},
+              {"title":"Petroleum Police Post","address1":"Unnamed Road","address2":"Ghana","coords":{"lat":5.623869672156137,"lng":-0.24931732883606061},"placeId":"ChIJ335BPBaZ3w8RNCgjJ3UKyt0"},
+              {"title":"Police Station (Achimota New Station)","address1":"JQCF+7RC","address2":"Accra, Ghana","coords":{"lat":5.620743331223809,"lng":-0.22555102638931235},"placeId":"ChIJvwj26mGZ3w8RtVKkDfS7oyE"},
+              {"title":"Achimota Police Station","address1":"Guggisberg St","address2":"Accra, Ghana","coords":{"lat":5.621633396186787,"lng":-0.2188687288360569},"placeId":"ChIJ7dhgSNyb3w8Rl44X_EtbsT8"},
+              {"title":"JQMF+4P","address1":"JQMF+4P Accra","address2":"Ghana","coords":{"lat":5.632853339769778,"lng":-0.22573041534424299},"placeId":"GhIJAAAAAACIFkARFdnO91PjzL8"},
+              {"title":"Amasaman Police Divisional Headquarters","address1":"Amasaman","address2":"Ghana","coords":{"lat":5.706245059786974,"lng":-0.3019066423278871},"placeId":"ChIJez22aIqf3w8RjyJGJsnnBV8"},
+              {"title":"Pokuasi Police Station","address1":"MPR8+JH8","address2":"Amasaman, Ghana","coords":{"lat":5.691536309612426,"lng":-0.28356678650818257},"placeId":"ChIJwQru5p6f3w8RF32E8l5WmDo"},
+              {"title":"Ghana Police Service, Amasaman District Headquarters","address1":"PP42+2JM","address2":"Amasaman, Ghana","coords":{"lat":5.705099170192688,"lng":-0.29842594232788233},"placeId":"ChIJZzyzp3Cf3w8RP9RXwgXVXt4"},
+              {"title":"Oshuiman Police Post","address1":"Ga West","address2":"Ghana","coords":{"lat":5.652750125133022,"lng":-0.3064487288360551},"placeId":"ChIJ5wrTUfqh3w8RAJIS5ZMq3NE"},
+              {"title":"HQ2Q+9W","address1":"HQ2Q+9W Accra","address2":"Ghana","coords":{"lat":5.550894652615595,"lng":-0.21013385581970523},"placeId":"GhIJXI_C9Sg0FkARgZVDi2znyr8"},
+              {"title":"MPR8+JH8","address1":"MPR8+JH8 Amasaman","address2":"Ghana","coords":{"lat":5.691542837972643,"lng":-0.28358981534424066},"placeId":"GhIJldQJaCLEFkARrXWY5aEl0r8"},
+              {"title":"Kotoku Police Station","address1":"Unnamed Road","address2":"Adjen Kotoku, Ghana","coords":{"lat":5.736760303955624,"lng":-0.35905522698364},"placeId":"ChIJlW0bh_4L3w8RJt08vA-9eQk"},
+              {"title":"MADINA DIVISIONAL POLICE HEADQUARTERS","address1":"Alhaji Bawa Rd","address2":"Madina, Ghana","coords":{"lat":5.677443875686823,"lng":-0.16888170978698325},"placeId":"ChIJ5yFv4-ec3w8RRbyPP3-31RM"},
+              {"title":"Ogbojo Police Station","address1":"MV84+HHV","address2":"Ogbodjo, Ghana","coords":{"lat":5.666510553249085,"lng":-0.14359040000000656},"placeId":"ChIJUxYK3kmD3w8RhAxjbAGWpHo"},
+              {"title":"New Ogbojo Police station","address1":"NEW OGBOJO ST PETERS","address2":"Ogbodjo, Ghana","coords":{"lat":5.671102583567585,"lng":-0.1367685000000085},"placeId":"ChIJr5MqajmD3w8RL-8JzZvIzPs"},
+              {"title":"Nmai Dzorn Police Station","address1":"MVGJ+PHQ","address2":"Ogbodjo, Ghana","coords":{"lat":5.67689857792839,"lng":-0.11851072883605651},"placeId":"ChIJR03VZA-D3w8RLtCmSLOU0kw"},
+              {"title":"main road police station","address1":"MV84+C69","address2":"Ogbodjo, Ghana","coords":{"lat":5.6660810683224785,"lng":-0.14439312883606892},"placeId":"ChIJKx5lf-WD3w8RR4qK88h6IgI"},
+              {"title":"Sraha Police Station","address1":"Nii Kwaofio St","address2":"Madina, Ghana","coords":{"lat":5.677585356928063,"lng":-0.13060931534423226},"placeId":"ChIJwXC2ABiD3w8RWPgSV-V9PXI"},
+              {"title":"Ghana Police Service (Haatso Ecomog)","address1":"MQJX+686","address2":"Haatso, Ghana","coords":{"lat":5.680613956891615,"lng":-0.20175762883606563},"placeId":"ChIJFx0nJUmc3w8R4WxoQzbYUTo"},
+              {"title":"Agbogba Container Police Post","address1":"MRP4+P96","address2":"Ghana","coords":{"lat":5.686753637810677,"lng":-0.1941126288360695},"placeId":"ChIJ_8s831Kc3w8RrmEiefBMkSs"},
+              {"title":"Haatso Police Station","address1":"Haatso","address2":"Ghana","coords":{"lat":5.67096960754689,"lng":-0.1953913000000007},"placeId":"ChIJDcVPx1yc3w8R_V-4kI6FbVo"},
+              {"title":"Agbogba police station","address1":"Agboba Police Station","address2":"Accra, Ghana","coords":{"lat":5.686747714793879,"lng":-0.1941137288360606},"placeId":"ChIJ-9J13lKc3w8Rqd3fuVKxf_E"},
+              {"title":"Ashongman Police Station","address1":"MQX7+M42","address2":"Kwabenya, Ghana","coords":{"lat":5.699156726106687,"lng":-0.23724729999999195},"placeId":"ChIJSUGWaW-e3w8R8oE4zP8l-xM"},
+              {"title":"Franco Estate Police Station","address1":"MPHM+2WR","address2":"Kwabenya, Ghana","coords":{"lat":5.677621940889725,"lng":-0.26524299999999945},"placeId":"ChIJ-08EMz2f3w8RU5QJGIM9tIs"},
+              {"title":"South Kwabenya Police Post.","address1":"9A Kwabenya","address2":"Ghana","coords":{"lat":5.674517735455793,"lng":-0.24106912883605558},"placeId":"ChIJZU0EAZOe3w8RpghPx1L9r4M"},
+              {"title":"Taifa Burkina Senior Police Officers Quarters","address1":"Unnamed Road","address2":"Kwabenya, Ghana","coords":{"lat":5.677916387599423,"lng":-0.2591577588954852},"placeId":"ChIJMxCKVayf3w8RpUFAoTfRqgQ"},
+              {"title":"Pure Water Police Post","address1":"PQ4J+2C4","address2":"Adenta Municipality, Ghana","coords":{"lat":5.705022313542185,"lng":-0.21894172883606178},"placeId":"ChIJXxpCJ--d3w8RApkE4m_O3wg"},
+              {"title":"Atomic Hills Police Station","address1":"MQX7+M39","address2":"Ghana","coords":{"lat":5.6991597038342166,"lng":-0.2372437134918215},"placeId":"ChIJea5HJdOf3w8RMLK7P1ZqvDk"},
+              {"title":"Taifa Police Station","address1":"MQ92+3GC","address2":"Taifa, Ghana","coords":{"lat":5.667684505038248,"lng":-0.24872589999999528},"placeId":"ChIJz7nq7ume3w8Rl3A-x5yRVsE"},
+              {"title":"Asofan Hill Top Police Post","address1":"MP29+C5R","address2":"Taifa, Ghana","coords":{"lat":5.651151142682546,"lng":-0.28210940000000795},"placeId":"ChIJY_mOe7-f3w8R1jjYLi_t8dI"},
+              {"title":"Policeman Curve Washing Bay","address1":"MP7X+F59","address2":"Taifa, Ghana","coords":{"lat":5.663653635692294,"lng":-0.25203406441803855},"placeId":"ChIJdfNwqU-f3w8Ri0oqnoDVG7w"},
+              {"title":"Franco Estate Police Station","address1":"MPMW+QG7","address2":"Kwabenya, Ghana","coords":{"lat":5.684454166177793,"lng":-0.253726428836063},"placeId":"ChIJt1PSyPSf3w8RU3fcRYrCRHo"},
+              {"title":"MPHM+2WR","address1":"MPHM+2WR Kwabenya","address2":"Ghana","coords":{"lat":5.677619406193628,"lng":-0.26523574110451476},"placeId":"GhIJdXEbDeC1FkARNYxxtJn50L8"},
+              {"title":"westland police station","address1":"Westlands Blvd","address2":"Accra, Ghana","coords":{"lat":5.65720846356846,"lng":-0.2077209134918201},"placeId":"ChIJz427jhKc3w8RB-fxLHmeiWk"},
+              {"title":"Police Station","address1":"MVVR+3V6","address2":"Adenta Municipality, Ghana","coords":{"lat":5.692702644305762,"lng":-0.1078751288360591},"placeId":"ChIJJbxY1VCD3w8RJjrmVqWTLAk"},
+              {"title":"Oyibi Police Station","address1":"Oyibi","address2":"Ghana","coords":{"lat":5.815963070355203,"lng":-0.12225362883605317},"placeId":"ChIJ____P4d53w8R4k63Bc5y8jg"},
+              {"title":"Haavad Police Post","address1":"QVQ9+CH3","address2":"Oyibi, Ghana","coords":{"lat":5.788541059087267,"lng":-0.13109305767212698},"placeId":"ChIJZ3xWr8B53w8RR7ZbL1cyswo"},
+              {"title":"Community 22 Police Station","address1":"PX5H+63Q","address2":"Ghana","coords":{"lat":5.70811685423692,"lng":-0.022278428836051134},"placeId":"ChIJGWGovUCA3w8RCO6Zi9cXiY0"},
+              {"title":"malejor police station","address1":"Flint guest house","address2":"Flint St, Accra, Ghana","coords":{"lat":5.596715680191116,"lng":-0.23338952883605435},"placeId":"ChIJVcTYzlWZ3w8RUGnT-cl7-xk"},
+              {"title":"Akporman Police Post","address1":"Unnamed Rd","address2":"Ghana","coords":{"lat":5.714424882580121,"lng":-0.21320172883605215},"placeId":"ChIJGQGzLe-d3w8RMRWKxntTCqs"},
+              {"title":"Agbajena police post","address1":"Anyaa-Awoshie Rd","address2":"Ghana","coords":{"lat":5.6348844733462595,"lng":-0.3102710288360666},"placeId":"ChIJj6wRgtOj3w8RUE3ZSjuDtL8"},
+              {"title":"Ghana Police Service - Nsakina Post","address1":"MM5F+7X9","address2":"Oduman, Ghana","coords":{"lat":5.6582239141089214,"lng":-0.32501067116394333},"placeId":"ChIJ9y3yTT-h3w8REgfl6qhij3s"},
+              {"title":"Frafraha Police station","address1":"PRPW+43M","address2":"Adenta Municipality, Ghana","coords":{"lat":5.735350002734078,"lng":-0.1548268288360677},"placeId":"ChIJy72Q9_t33w8R_r58i5ot1HA"},
+              {"title":"Ayi Mensah Police Station","address1":"Oyarifa Rd","address2":"Ghana","coords":{"lat":5.783328086614329,"lng":-0.1814869730163582},"placeId":"ChIJS2NwNht33w8Rb6hmRZ_9hqQ"},
+              {"title":"Abokobi Police Statiom","address1":"PQJW+5PR","address2":"Pantang West, Ghana","coords":{"lat":5.7305145548636,"lng":-0.20324102883606088},"placeId":"ChIJkZ8LKd133w8RmUKf8J-8sdg"},
+              {"title":"Abokobi police office","address1":"Abokobi Rd","address2":"Accra, Ghana","coords":{"lat":5.73033517130142,"lng":-0.2034830576721136},"placeId":"ChIJOTvTFc133w8RVZ7K00LMwWo"},
+              {"title":"Adenta Municipal Assembly","address1":"PR5M+7RP","address2":"Adenta Municipality, Ghana","coords":{"lat":5.708272684899437,"lng":-0.16543332883605544},"placeId":"ChIJIQp7cD-d3w8RRM81jt1JApk"},
+              {"title":"Manet Police Station","address1":"JVMG+W25","address2":"Accra, Ghana","coords":{"lat":5.634880707977238,"lng":-0.12492648650818561},"placeId":"ChIJtRcAGuyE3w8R9Za1DEAFGBo"},
+              {"title":"Ashaiman Divisional Police Headquarters","address1":"Mandela Park","address2":"Ashaiman, Tema, Greater Accra, Ghana","coords":{"lat":5.69080221296365,"lng":-0.0268918288360509},"placeId":"ChIJdzFrylmA3w8RODHlNK5cjvY"},
+              {"title":"Odorkor Police Station","address1":"Accra","address2":"Ghana","coords":{"lat":5.577374432983826,"lng":-0.2569325711639503},"placeId":"ChIJo6jvrM6Z3w8RM4snEq8uPrA"},
+              {"title":"ODORKOR POLICE MTTU","address1":"HPGV+W6M","address2":"Accra, Ghana","coords":{"lat":5.577385083330418,"lng":-0.2569570999999926},"placeId":"ChIJdcCVrM6Z3w8RgHZBP0iE8bU"},
+              {"title":"Gbawe LAFA Police Station","address1":"Gbawe Rd","address2":"Accra, Ghana","coords":{"lat":5.580709678002964,"lng":-0.2929913576721277},"placeId":"ChIJYeMp-wyY3w8RYHQhZdvUAUY"},
+              {"title":"Gbawe Police Station","address1":"Gbawe","address2":"Faith Montessori School, Road, Ghana","coords":{"lat":5.582097607599839,"lng":-0.3107349288360606},"placeId":"ChIJx-6EUhCj3w8RrxiOrbv8KmI"},
+              {"title":"Wembley Park, Mallam Police Station","address1":"102 Gbawe Rd","address2":"Mallam, Ghana","coords":{"lat":5.575388838340034,"lng":-0.2895739822090171},"placeId":"ChIJjaAbVo-Z3w8RKeaGijbLr3M"},
+              {"title":"Police Station Old","address1":"JPC9+HXR","address2":"Sowutoum, Ghana","coords":{"lat":5.621553468313182,"lng":-0.2801299288360659},"placeId":"ChIJtRo_JeuY3w8RD5G2wNqvlgs"},
+              {"title":"Sowutoum Police Station","address1":"Sowutoum Main Road","address2":"Sowutoum, Ghana","coords":{"lat":5.6245755391298,"lng":-0.28056712883606894},"placeId":"ChIJU-E-quqY3w8RAyg8DM3RaWM"},
+              {"title":"Anyaa Police Station","address1":"JP26+4JX","address2":"Awoshie, Ghana","coords":{"lat":5.60047969014489,"lng":-0.2884417441803033},"placeId":"ChIJ7_L6D2OY3w8RlvnKweVA2DE"},
+              {"title":"Weija Police Station \u0026 Staff Bungalows","address1":"Ghana","coords":{"lat":5.572137091840869,"lng":-0.33727312883605753},"placeId":"ChIJN5XMASij3w8RRWXYAqGpjpA"},
+              {"title":"Weija Police Station \u0026 Staff Bangalows","address1":"Ghana","coords":{"lat":5.572142564191807,"lng":-0.33727312883605753},"placeId":"ChIJfZEwACij3w8RBxOrXNC4n_A"},
+              {"title":"Weija Toll Booth Police Station","address1":"Accra - Cape Coast Rd","address2":"Kasoa, Ghana","coords":{"lat":5.547407483655297,"lng":-0.3818942999999919},"placeId":"ChIJ-6Wuplu73w8RAhzzJoxHCZY"},
+              {"title":"Tetegu Police barracks / Quarters","address1":"HM3Q+368","address2":"Accra, Ghana","coords":{"lat":5.552692899283587,"lng":-0.31191982883605807},"placeId":"ChIJg_0puly93w8R7s9O5O6S_0Q"},
+              {"title":"Tetegu Police Quarters","address1":"Police Quarters","address2":"Tetegu Rd, Ghana","coords":{"lat":5.553278514762899,"lng":-0.30932674232788004},"placeId":"ChIJT2QhdQ-93w8RpsHqfiPOuJc"},
+              {"title":"Tetegu Police Station","address1":"Tetegu Rd","address2":"Tetegu, Ghana","coords":{"lat":5.553288994117667,"lng":-0.3093407288360517},"placeId":"ChIJeeWxhUq93w8RwIFE6mAafDE"},
+              {"title":"Amanfro Police Station","address1":"GHPQ+FJR","address2":"Ngleshi Amanfro, Ghana","coords":{"lat":5.5362755964543835,"lng":-0.41093125581970646},"placeId":"ChIJG0O-bh673w8RW0UDMTfdy3c"},
+              {"title":"Dansoman Police Station","address1":"Dansoman High St","address2":"Accra, Ghana","coords":{"lat":5.543962997655914,"lng":-0.26499452883605557},"placeId":"ChIJd_aT756X3w8ReGIsGEmV_M0"},
+              {"title":"Dansoman Old Police Station","address1":"GPWR+22J","address2":"Accra, Ghana","coords":{"lat":5.5450960882576785,"lng":-0.2599885411045122},"placeId":"ChIJEa3UwcyX3w8RRCafP7Wyvsc"},
+              {"title":"police station","address1":"Kokrobite Beach","address2":" Kokrobite, Ghana","coords":{"lat":5.496336172105366,"lng":-0.3627419000000076},"placeId":"ChIJUTHPBhO83w8RULwG-a1Q5aA"},
+              {"title":"Korle Bu District Police Station","address1":"GQPG+P8F","address2":"Accra, Ghana","coords":{"lat":5.536874031014141,"lng":-0.22423468650817568},"placeId":"ChIJPcqYnQqR3w8R-I9VTJ-23J4"},
+              {"title":"Mamprobi Police Station","address1":"Guggisberg Ave","address2":"Accra, Ghana","coords":{"lat":5.533607611405316,"lng":-0.23980997116394676},"placeId":"ChIJIdJYQzyX3w8RBXk7eOFxSvQ"},
+              {"title":"Main Police Station","address1":"Ashaiman Lashibi Road","address2":"Tema, Ghana","coords":{"lat":5.687260580893156,"lng":-0.03158565158996707},"placeId":"ChIJuXeInviA3w8RkLzqD3BTY8s"},
+              {"title":"Police Station - Sakumono Estate","address1":"JWCJ+RQM","address2":"Sakumono, Ghana","coords":{"lat":5.622102840132397,"lng":-0.06807452883606846},"placeId":"ChIJ2xJiVZiG3w8RC5JCoyJv3aY"},
+              {"title":"Vivian Farm Police Station","address1":"Huntington Dr","address2":"Tema, Ghana","coords":{"lat":5.630652135089061,"lng":-0.06263252883605519},"placeId":"ChIJNcrFhLuG3w8RwY0PJvckl1g"},
+              {"title":"JWRF+HM","address1":"JWRF+HM Accra","address2":"Ghana","coords":{"lat":5.64145905396681,"lng":-0.07581518220900696},"placeId":"GhIJRbbz_dSQFkARm8QgsHJos78"},
+              {"title":"Klagon police station","address1":"Sign Board Bus Stop","address2":"Ghana","coords":{"lat":5.814343238903018,"lng":0.0746659711639408},"placeId":"ChIJV__ySSiB3w8R1FTyqF31roM"},
+              {"title":"Ghana Police Service, Klagon","address1":"Tema New Town","address2":"Ghana","coords":{"lat":5.660272209252101,"lng":-0.05207082883605718},"placeId":"ChIJBRSMXDmB3w8RmKTzkfZ7qqk"},
+              {"title":"Baatsona Police Station DOVVSU","address1":"Unnamed Road","address2":"Ghana","coords":{"lat":5.635344054041153,"lng":-0.09486352883605331},"placeId":"ChIJmVYuGrKF3w8R_EKDuYIg6Nk"},
+              {"title":"TEMA COMMUNITY 18, POLICE STATION","address1":"Rd Leading to Spintex-Sakumono","address2":"Accra, Ghana","coords":{"lat":5.642735446953775,"lng":-0.07640471349181777},"placeId":"ChIJ88G7_g-F3w8R_hfeV9B3944"},
+              {"title":"Kaneshie Police station","address1":"HQ87+JR5","address2":"Accra, Ghana","coords":{"lat":5.566451173508873,"lng":-0.2353128981475927},"placeId":"ChIJ0WSxZeOZ3w8R-ISgbLnFWU4"},
+              {"title":"Darkuman Police Station","address1":"Oshimpa St","address2":"Accra, Ghana","coords":{"lat":5.5883214151558285,"lng":-0.24510105767211687},"placeId":"ChIJuZQTADGZ3w8RZHljrPeCsyQ"},
+              {"title":"Police Station - Cantonments","address1":"HRC9+9R7","address2":"Accra, Ghana","coords":{"lat":5.5709561869927215,"lng":-0.18045329999999637},"placeId":"ChIJB2WOooWa3w8REtEpbaPdjNQ"},
+              {"title":"Cantonment Police barracks","address1":"Accra","address2":"Ghana","coords":{"lat":5.57094756884185,"lng":-0.1804371986724851},"placeId":"ChIJ6WDj1ymb3w8RgdCfq-uHTM4"},
+              {"title":"Police Barracks","address1":"By Pass Rd","address2":"Accra 233, Ghana","coords":{"lat":5.55999639769888,"lng":-0.16726259999999993},"placeId":"ChIJMzijwwqQ3w8RStTFFfMlaww"},
+              {"title":"Osu Police Station. Bus Stop","address1":"La Rd","address2":"Accra, Ghana","coords":{"lat":5.558372663240646,"lng":-0.16017718465575648},"placeId":"ChIJwRe77QiQ3w8Ri7ICk10RUcA"},
+              {"title":"La Police Station","address1":"Manle","address2":"Maale Dada St, Accra, Ghana","coords":{"lat":5.561355193650985,"lng":-0.15271372883606915},"placeId":"ChIJXb3jmwCQ3w8R0b6QyDcFEYo"},
+              {"title":"Osu Police Station","address1":"28th February Rd","address2":"Accra, Ghana","coords":{"lat":5.552071645727071,"lng":-0.17779945767212313},"placeId":"ChIJKdaOCnCQ3w8RbCsDKWGJKQo"},
+              {"title":"Osu police station bus stop","address1":"HR2C+VPP","address2":"Accra, Ghana","coords":{"lat":5.552162569076686,"lng":-0.17779591957396867},"placeId":"ChIJrdUzXmmR3w8RaF4X1Fz8AOM"},
+              {"title":"Tse Addo police station","address1":"Tse Addo High St","address2":"Accra, Ghana","coords":{"lat":5.587336998385767,"lng":-0.13731442883606615},"placeId":"ChIJd-GEBfOF3w8RswFU_mS1VsE"}
+            ],
+            "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17},
+            "mapsApiKey": "AIzaSyCTdBaymYMI1Z1R6dYYLlkIAWoWnpnClUE"
+          };
+    
+          function initMap() {
+            new LocatorPlus(CONFIGURATION);
+          }
+        </script>
+        <script id="locator-result-items-tmpl" type="text/x-handlebars-template">
+          {{#each locations}}
+            <li class="location-result" data-location-index="{{index}}">
+              <button class="select-location">
+                <h2 class="name">{{title}}</h2>
+              </button>
+              <div class="address">{{address1}}<br>{{address2}}</div>
+              <button class="details-button">
+                View details
+              </button>
+              {{#if travelDistanceText}}
+                <div class="distance">{{travelDistanceText}}</div>
+              {{/if}}
+              {{#if ../showDirectionsButton}}
+                <button class="show-directions" title="Show directions to this location">
+                  <svg width="34" height="34" viewBox="0 0 34 34"
+                       fill="none" xmlns="http://www.w3.org/2000/svg" alt="Show directions">
+                    <path d="M17.5867 9.24375L17.9403 8.8902V8.8902L17.5867 9.24375ZM16.4117 9.24375L16.7653 9.59731L16.7675 9.59502L16.4117 9.24375ZM8.91172 16.7437L8.55817 16.3902L8.91172 16.7437ZM8.91172 17.9229L8.55817 18.2765L8.55826 18.2766L8.91172 17.9229ZM16.4117 25.4187H16.9117V25.2116L16.7652 25.0651L16.4117 25.4187ZM16.4117 25.4229H15.9117V25.63L16.0582 25.7765L16.4117 25.4229ZM25.0909 17.9229L25.4444 18.2765L25.4467 18.2742L25.0909 17.9229ZM25.4403 16.3902L17.9403 8.8902L17.2332 9.5973L24.7332 17.0973L25.4403 16.3902ZM17.9403 8.8902C17.4213 8.3712 16.5737 8.3679 16.0559 8.89248L16.7675 9.59502C16.8914 9.4696 17.1022 9.4663 17.2332 9.5973L17.9403 8.8902ZM16.0582 8.8902L8.55817 16.3902L9.26527 17.0973L16.7653 9.5973L16.0582 8.8902ZM8.55817 16.3902C8.0379 16.9105 8.0379 17.7562 8.55817 18.2765L9.26527 17.5694C9.13553 17.4396 9.13553 17.227 9.26527 17.0973L8.55817 16.3902ZM8.55826 18.2766L16.0583 25.7724L16.7652 25.0651L9.26517 17.5693L8.55826 18.2766ZM15.9117 25.4187V25.4229H16.9117V25.4187H15.9117ZM16.0582 25.7765C16.5784 26.2967 17.4242 26.2967 17.9444 25.7765L17.2373 25.0694C17.1076 25.1991 16.895 25.1991 16.7653 25.0694L16.0582 25.7765ZM17.9444 25.7765L25.4444 18.2765L24.7373 17.5694L17.2373 25.0694L17.9444 25.7765ZM25.4467 18.2742C25.9631 17.7512 25.9663 16.9096 25.438 16.3879L24.7354 17.0995C24.8655 17.2279 24.8687 17.4363 24.7351 17.5716L25.4467 18.2742Z" fill="#7e7efd"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19 19.8333V17.75H15.6667V20.25H14V16.9167C14 16.4542 14.3708 16.0833 14.8333 16.0833H19V14L21.9167 16.9167L19 19.8333Z" fill="#7e7efd"/>
+                    <circle cx="17" cy="17" r="16.5" stroke="#7e7efd"/>
+                  </svg>
+                </button>
+              {{/if}}
+            </li>
+          {{/each}}
+        </script>
+        <script id="locator-details-tmpl" type="text/x-handlebars-template">
+          <button class="back-button">
+            <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/arrow_back/v11/24px.svg" alt=""/>
+            Back
+          </button>
+          <header>
+            <div class="banner">
+              <svg width="23" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9976 11.5003C22.9976 13.2137 22.7083 14.9123 21.8025 16.7056C18.6321 22.9832 12.7449 24.3314 12.2758 30.7085C12.2448 31.1294 11.9286 31.4744 11.4973 31.4744C11.0689 31.4744 10.7527 31.1294 10.7218 30.7085C10.2527 24.3314 4.3655 22.9832 1.19504 16.7056C0.289306 14.9123 0 13.2137 0 11.5003C0 5.13275 5.14557 0 11.5003 0C17.852 0 22.9976 5.13275 22.9976 11.5003Z" fill="#4285F4"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" transform="translate(5.5,5.5)" d="M6 8.84091L9.708 11L8.724 6.92961L12 4.19158L7.6856 3.83881L6 0L4.3144 3.83881L0 4.19158L3.276 6.92961L2.292 11L6 8.84091Z" fill="#FBE15C"/>
+              </svg>
+            </div>
+            <h2>{{location.title}}</h2>
+          </header>
+          {{#if location.travelDistanceText}}
+            <div class="distance">{{location.travelDistanceText}} away</div>
+          {{/if}}
+          <div class="address">
+            {{location.address1}}<br>
+            {{location.address2}}
+          </div>
+          <div class="atmosphere">
+            {{#if place.rating}}
+              <span class="star-rating-numeric">{{place.rating}}</span>
+              <span>
+                {{#each place.fullStarIcons}}
+                  <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star/v15/24px.svg"
+                       alt="" class="star-icon"/>
+                {{/each}}
+                {{#each place.halfStarIcons}}
+                  <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star_half/v17/24px.svg"
+                       alt="" class="star-icon"/>
+                {{/each}}
+                {{#each place.emptyStarIcons}}
+                  <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star_outline/v9/24px.svg"
+                       alt="" class="star-icon"/>
+                {{/each}}
+              </span>
+            {{/if}}
+            {{#if place.user_ratings_total}}
+              <a href="{{place.url}}" target="_blank">{{place.user_ratings_total}} reviews</a>
+            {{else}}
+              <a href="{{place.url}}" target="_blank">View on Google Maps</a>
+            {{/if}}
+            {{#if place.price_level}}
+              &bull;
+              <span class="price-dollars">
+                {{#each place.dollarSigns}}${{/each}}
+              </span>
+            {{/if}}
+          </div>
+          <hr/>
+          {{#if place.opening_hours}}
+            <div class="hours contact">
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/schedule/v12/24px.svg"
+                   alt="Opening hours" class="icon"/>
+              <div class="right">
+                {{#each place.openingHoursSummary}}
+                  <div>
+                    <span class="weekday">{{days}}</span>
+                    <span class="hours">{{hours}}</span>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if place.website}}
+            <div class="website contact">
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/public/v10/24px.svg"
+                   alt="Website" class="icon"/>
+              <div class="right">
+                <a href="{{place.website}}">{{place.websiteDomain}}</a>
+              </div>
+            </div>
+          {{/if}}
+          {{#if place.formatted_phone_number}}
+            <div class="phone contact">
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/phone/v10/24px.svg"
+                   alt="Phone number" class="icon"/>
+              <div class="right">
+                {{place.formatted_phone_number}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if place.html_attributions}}
+            {{#each place.html_attributions}}
+              <p class="attribution">{{{this}}}</p>
+            {{/each}}
+          {{/if}}
+        </script>
+      </head>
+      <body>
+        
+</head>
+
+
+
+
+<body>
+  <nav>
+    <div class="wrapper">
+      <div class="logo"><a href="index.html">E L A</a></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <li><a href="index.html">Home</a></li>
+
+        <li>
+          <a href="index.html #maps" class="desktop-item">Maps</a>
+          <input type="checkbox" id="showMega">
+          <label for="showMega" class="mobile-item">Maps</label>
+          <div class="mega-box">
+            <div class="content">
+              <div class="row">
+                <img src="img/Ghana-Police.webp" alt="">
+              </div>
+              <div class="row">
+                <header>Ghana Police Service</header>
+                <ul class="mega-links">
+                  <li><a href="Police map.html">View Map</a></li>
+                  <li><a href="https://police.gov.gh/en/">Visit Police Service Site</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>Ghana Fire Service</header>
+                <ul class="mega-links">
+                  <li><a href="Fire Map.html">View Map</a></li>
+                  <li><a href="https://www.gnfs.gov.gh/">Visit Fire Service Site</a></li>
+                                 </ul>
+              </div>
+              <div class="row">
+                <header>Ghana Health Service</header>
+                <ul class="mega-links">
+                  <li><a href="Hospital map.html">View Map</a></li>
+                  <li><a href="https://www.moh.gov.gh/">Visit Health Service Site</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html #about us">Abour Us</a></li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+
+  <div class="body-text">
+    <div class="title">Responsive Dropdown and Mega Menu</div>
+    <div class="sub-title">using only HTML & CSS</div>
+  </div>
+
+
+  <pre class="tab"> </pre>
+  
+  
+
+
+  <div id="map-container">
+    <div id="locations-panel">
+      <div id="locations-panel-list">
+        <header>
+          <h1 class="search-title">
+            <img src="https://fonts.gstatic.com/s/i/googlematerialicons/place/v15/24px.svg"/>
+            Find a Police Station near you
+          </h1>
+          <div class="search-input">
+            <input id="location-search-input" placeholder="Enter your street address or town name">
+            <div id="search-overlay-search" class="search-input-overlay search">
+              <button id="location-search-button">
+                <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search"/>
+              </button>
+            </div>
+          </div>
+        </header>
+        <div class="section-name" id="location-results-section-name">
+          All locations
+        </div>
+        <div class="results">
+          <ul id="location-results-list"></ul>
+        </div>
+      </div>
+      <div id="locations-panel-details"></div>
+    </div>
+    <div id="map"></div>
+  </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTdBaymYMI1Z1R6dYYLlkIAWoWnpnClUE&callback=initMap&libraries=places,geometry&channel=GMPSB_locatorplus_v4_cABCDE" async defer></script>
+
+
+
+</body>
+</html>

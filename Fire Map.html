@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="css/content.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="icon" href="img/28799812331.png" />
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Location Assistant</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="css/fire.css" rel="stylesheet">
+<script src="js/fire.js"></script>
+
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+
+
+    
+  <script>
+    const CONFIGURATION = {
+      "locations": [
+        {"title":"GHANA NATIONAL FIRE SERVICE HEADQUARTERS","address1":"Accra","address2":"Ghana","coords":{"lat":5.569842677556346,"lng":-0.18514422209014336},"placeId":"ChIJS9dDqIea3w8RAUkMYWY8My8"},
+        {"title":"Ghana National Fire Service (Korle-Bu)","address1":"Accra","address2":"Ghana","coords":{"lat":5.535263661806595,"lng":-0.23280635092621127},"placeId":"ChIJZQ8DyTCX3w8RrHiUGbdMekM"},
+        {"title":"Ghana National Fire Service, Dodowa","address1":"VWM4+PCW","address2":"Dodowa, Ghana","coords":{"lat":5.884403415300695,"lng":-0.09388267790985338},"placeId":"ChIJbW9JmDh73w8ReMfSD1ad2p0"},
+        {"title":"Ghana National Fire Service, Tema Region","address1":"JXQV+9G7","address2":"Tema, Ghana","coords":{"lat":5.638479801823416,"lng":-0.006200564418032961},"placeId":"ChIJmSw5S0CH3w8RBLub38AvMCI"},
+        {"title":"Ghana National Fire Service","address1":"Accra","address2":"Ghana","coords":{"lat":5.5697966616235695,"lng":-0.18479492209013904},"placeId":"ChIJUTt7qYea3w8RIimZZtk3x4s"},
+        {"title":"Makola Fire Service","address1":"Accra","address2":"Ghana","coords":{"lat":5.549653015408884,"lng":-0.2074782644180262},"placeId":"ChIJuZXfGb2Q3w8RtFW48HzuplY"},
+        {"title":"Teshie Fire Service","address1":"Fertilizer Rd","address2":"Accra, Ghana","coords":{"lat":5.611036479447978,"lng":-0.102503322090155},"placeId":"ChIJK70Xo5SF3w8RGlC3Bq2135k"},
+        {"title":"Fire Service, Burma Camp","address1":"HRPW+V3M","address2":"Accra, Ghana","coords":{"lat":5.587226723907445,"lng":-0.15482246441802072},"placeId":"ChIJveU7Rcma3w8RijCzCb9FX9E"},
+        {"title":"Minsitries Fire Station","address1":"Liberation Rd","address2":"Accra, Ghana","coords":{"lat":5.5526663400553575,"lng":-0.19763317976227324},"placeId":"ChIJDbTA6pqQ3w8RQzRYShzCFgM"},
+        {"title":"Accra City Fire Station.","address1":"Kojo Thompson Rd","address2":"Accra, Ghana","coords":{"lat":5.549375527404267,"lng":-0.207300593254085},"placeId":"ChIJZSHGEb2Q3w8R306aU_iePuA"},
+        {"title":"Dansoman Fire station","address1":"Shito St","address2":"Accra, Ghana","coords":{"lat":5.5417034371246245,"lng":-0.26578413558196345},"placeId":"ChIJlRWJM0mX3w8RuLlY6LR7PCY"},
+        {"title":"Fire Station","address1":"PJPR+C3V","address2":"Adjen Kotoku, Ghana","coords":{"lat":5.736157106791418,"lng":-0.35984349325409726},"placeId":"ChIJ9____wsK3w8RMRmyPfJfETA"},
+        {"title":"Fire Sevice","address1":"GPVV+39W","address2":"Accra, Ghana","coords":{"lat":5.542799624912125,"lng":-0.256542500000001},"placeId":"ChIJk4U8MCGX3w8R8cT9WtUyyYw"},
+        {"title":"Ghana National Fire Service - Industrial Area","address1":"No 1 Adjuma Cres","address2":"Accra, Ghana","coords":{"lat":5.565021694402544,"lng":-0.22523468650818224},"placeId":"ChIJn9EqFzyZ3w8RoKzinfupnsY"},
+        {"title":"Ghana National Fire Service - Circle","address1":"Ring Rd E","address2":"Accra, Ghana","coords":{"lat":5.5700081115495115,"lng":-0.21415471534423913},"placeId":"ChIJk0kmOd-b3w8Rm2-Ir2T_EUw"},
+        {"title":"Ghana National Fire Service Head Quarters","address1":"HR97+VX7","address2":"Accra, Ghana","coords":{"lat":5.5697183333369535,"lng":-0.1850642999999974},"placeId":"ChIJG49zF4Kb3w8RvOSiQmLmu78"},
+        {"title":"Ghana National Fire Service - Makola Station","address1":"1948 Kojo Thompson Rd","address2":"Accra, Ghana","coords":{"lat":5.549260201506929,"lng":-0.20734029999999626},"placeId":"ChIJGd3aYn-R3w8RBZabBC3paZ8"},
+        {"title":"Ghana National Fire Service Amasaman","address1":"PP32+C75","address2":"Amasaman, Ghana","coords":{"lat":5.703592191382836,"lng":-0.2992648288360611},"placeId":"ChIJzbmyqiCg3w8R1_49SGtxqME"},
+        {"title":"Ashaiman Fire Station","address1":"MXRF+XWV","address2":"Tema, Ghana","coords":{"lat":5.692504290557378,"lng":-0.025204371163936035},"placeId":"ChIJjz8_LVaA3w8RVepmZlhW-7A"},
+        {"title":"ASHAIMAN FIRE SERVICE STATION","address1":"Tema","address2":"Ghana","coords":{"lat":5.6884668603496396,"lng":-0.030309657672120682},"placeId":"ChIJFV7Q0leA3w8R4jz2YTruEZg"},
+        {"title":"Ghana West Municipal Fire Station","address1":"104 Hospital Road","address2":"Amasaman, Amasaman, Ghana","coords":{"lat":5.703545775602825,"lng":-0.29931705767211714},"placeId":"ChIJScaDRqef3w8R-wmxpJMO450"},
+        {"title":"LEKMA FIRE SERVICE","address1":"JV6X+83Q","address2":"Accra, Ghana","coords":{"lat":5.610912478583813,"lng":-0.1022949153442343},"placeId":"ChIJqzSJZNqF3w8RIDx14LwBZNw"},
+        {"title":"Ghana National Fire Service, Ningo-Prampram","address1":"P48G+9FP","address2":"Prampram, Ghana","coords":{"lat":5.716005992896915,"lng":0.12620327116392716},"placeId":"ChIJGdkCM2l9IBARusUbxl5299Q"},
+        {"title":"Ghana National Fire Service GNFS","address1":"Opposite Fire Service","address2":"Nsawam, Ghana","coords":{"lat":5.806104154271173,"lng":-0.34416092883605254},"placeId":"ChIJsUVP_oQL3w8RY2X3CPaSBrs"},
+        {"title":"Tema Industrial Area Fire Station","address1":"Sanyo Rd","address2":"Tema 00233, Ghana","coords":{"lat":5.665466738893488,"lng":-0.0010092711639431151},"placeId":"ChIJ8RF6il9_IBARJNTLUuKt1eQ"},
+        {"title":"Ghana National Fire Service - Adidome","address1":"3GF3+C86","address2":"Mafi - Adidome, Ghana","coords":{"lat":6.073672489875515,"lng":0.5032455711639416},"placeId":"ChIJFXItF1DdIBARqwCcMvaDVvI"},
+        {"title":"Kufour Station","address1":"Independence Avenue","address2":"Accra, Ghana","coords":{"lat":5.55004455748814,"lng":-0.20320084418029793},"placeId":"ChIJYdr1dJeQ3w8Rb-Fr50NZ2y8"},
+        {"title":"Tema Port Fire Station","address1":"J2H3+4M9","address2":"Tema, Ghana","coords":{"lat":5.627790695164545,"lng":0.004222771163941985},"placeId":"ChIJZaPh48R5IBARm3A-8stykLE"},
+        {"title":"FIRE STATION -EASTATE","address1":"V85G+49F","address2":"Asamankese, Ghana","coords":{"lat":5.858044529076574,"lng":-0.6740886576721228},"placeId":"ChIJ2YaaDm793g8RlZfQETgy0ik"},
+        {"title":"Battor Market","address1":"3C82+HGV","address2":"Ghana","coords":{"lat":6.066637764293462,"lng":0.4013003288360695},"placeId":"ChIJaX7wZ9jpIBARzaPAGJmSsX0"},
+        {"title":"GPHA - Tema Port main gate","address1":"Tema","address2":"Ghana","coords":{"lat":5.628400587256703,"lng":0.004223228836042203},"placeId":"ChIJPcIBW6F4IBARgjmvpI70Lnw"},
+        {"title":"Opportunity International","address1":"MXQ9+8P6","address2":"Tema, Ghana","coords":{"lat":5.688280856491477,"lng":-0.030333097483832283},"placeId":"ChIJbcnnLlaA3w8RKQR2NQ9WKEQ"},
+        {"title":"Ghana National Fire Service, Gbetsile","address1":"PXVC+M2W","address2":"Tema, Ghana","coords":{"lat":5.744258991217924,"lng":-0.029931157672118403},"placeId":"ChIJWQcZSZp_3w8R9BZy9c--jW8"},
+        {"title":"ANLOGA FIRE STATION","address1":"Unnamed Road","address2":"Anloga, Ghana","coords":{"lat":5.791259198870352,"lng":0.8791818000000173},"placeId":"ChIJldKk4BILIRARGfAyasjEoBA"},
+        {"title":"Akosombo Fire Service","address1":"73H2+8WJ","address2":"Akosombo, Ghana","coords":{"lat":6.278416951855095,"lng":0.052274599999999616},"placeId":"ChIJr12VluGoIBARF--gkJL3-qo"},
+        {"title":"Ghana Fire Service Station","address1":"73H2+9W6","address2":"Akosombo, Ghana","coords":{"lat":6.278479019094455,"lng":0.052232442327886375},"placeId":"ChIJE8qmluGoIBARqGxLks0DfEM"}
+      ],
+      "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17},
+      "mapsApiKey": "AIzaSyCTdBaymYMI1Z1R6dYYLlkIAWoWnpnClUE"
+    };
+
+    function initMap() {
+      new LocatorPlus(CONFIGURATION);
+    }
+  </script>
+  <script id="locator-result-items-tmpl" type="text/x-handlebars-template">
+    {{#each locations}}
+      <li class="location-result" data-location-index="{{index}}">
+        <button class="select-location">
+          <h2 class="name">{{title}}</h2>
+        </button>
+        <div class="address">{{address1}}<br>{{address2}}</div>
+        <button class="details-button">
+          View details
+        </button>
+        {{#if travelDistanceText}}
+          <div class="distance">{{travelDistanceText}}</div>
+        {{/if}}
+        {{#if ../showDirectionsButton}}
+          <button class="show-directions" title="Show directions to this location">
+            <svg width="34" height="34" viewBox="0 0 34 34"
+                 fill="none" xmlns="http://www.w3.org/2000/svg" alt="Show directions">
+              <path d="M17.5867 9.24375L17.9403 8.8902V8.8902L17.5867 9.24375ZM16.4117 9.24375L16.7653 9.59731L16.7675 9.59502L16.4117 9.24375ZM8.91172 16.7437L8.55817 16.3902L8.91172 16.7437ZM8.91172 17.9229L8.55817 18.2765L8.55826 18.2766L8.91172 17.9229ZM16.4117 25.4187H16.9117V25.2116L16.7652 25.0651L16.4117 25.4187ZM16.4117 25.4229H15.9117V25.63L16.0582 25.7765L16.4117 25.4229ZM25.0909 17.9229L25.4444 18.2765L25.4467 18.2742L25.0909 17.9229ZM25.4403 16.3902L17.9403 8.8902L17.2332 9.5973L24.7332 17.0973L25.4403 16.3902ZM17.9403 8.8902C17.4213 8.3712 16.5737 8.3679 16.0559 8.89248L16.7675 9.59502C16.8914 9.4696 17.1022 9.4663 17.2332 9.5973L17.9403 8.8902ZM16.0582 8.8902L8.55817 16.3902L9.26527 17.0973L16.7653 9.5973L16.0582 8.8902ZM8.55817 16.3902C8.0379 16.9105 8.0379 17.7562 8.55817 18.2765L9.26527 17.5694C9.13553 17.4396 9.13553 17.227 9.26527 17.0973L8.55817 16.3902ZM8.55826 18.2766L16.0583 25.7724L16.7652 25.0651L9.26517 17.5693L8.55826 18.2766ZM15.9117 25.4187V25.4229H16.9117V25.4187H15.9117ZM16.0582 25.7765C16.5784 26.2967 17.4242 26.2967 17.9444 25.7765L17.2373 25.0694C17.1076 25.1991 16.895 25.1991 16.7653 25.0694L16.0582 25.7765ZM17.9444 25.7765L25.4444 18.2765L24.7373 17.5694L17.2373 25.0694L17.9444 25.7765ZM25.4467 18.2742C25.9631 17.7512 25.9663 16.9096 25.438 16.3879L24.7354 17.0995C24.8655 17.2279 24.8687 17.4363 24.7351 17.5716L25.4467 18.2742Z" fill="#7e7efd"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M19 19.8333V17.75H15.6667V20.25H14V16.9167C14 16.4542 14.3708 16.0833 14.8333 16.0833H19V14L21.9167 16.9167L19 19.8333Z" fill="#7e7efd"/>
+              <circle cx="17" cy="17" r="16.5" stroke="#7e7efd"/>
+            </svg>
+          </button>
+        {{/if}}
+      </li>
+    {{/each}}
+  </script>
+  <script id="locator-details-tmpl" type="text/x-handlebars-template">
+    <button class="back-button">
+      <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/arrow_back/v11/24px.svg" alt=""/>
+      Back
+    </button>
+    <header>
+      <div class="banner">
+        <svg width="23" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9976 11.5003C22.9976 13.2137 22.7083 14.9123 21.8025 16.7056C18.6321 22.9832 12.7449 24.3314 12.2758 30.7085C12.2448 31.1294 11.9286 31.4744 11.4973 31.4744C11.0689 31.4744 10.7527 31.1294 10.7218 30.7085C10.2527 24.3314 4.3655 22.9832 1.19504 16.7056C0.289306 14.9123 0 13.2137 0 11.5003C0 5.13275 5.14557 0 11.5003 0C17.852 0 22.9976 5.13275 22.9976 11.5003Z" fill="#4285F4"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" transform="translate(5.5,5.5)" d="M6 8.84091L9.708 11L8.724 6.92961L12 4.19158L7.6856 3.83881L6 0L4.3144 3.83881L0 4.19158L3.276 6.92961L2.292 11L6 8.84091Z" fill="#FBE15C"/>
+        </svg>
+      </div>
+      <h2>{{location.title}}</h2>
+    </header>
+    {{#if location.travelDistanceText}}
+      <div class="distance">{{location.travelDistanceText}} away</div>
+    {{/if}}
+    <div class="address">
+      {{location.address1}}<br>
+      {{location.address2}}
+    </div>
+    <div class="atmosphere">
+      {{#if place.rating}}
+        <span class="star-rating-numeric">{{place.rating}}</span>
+        <span>
+          {{#each place.fullStarIcons}}
+            <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star/v15/24px.svg"
+                 alt="" class="star-icon"/>
+          {{/each}}
+          {{#each place.halfStarIcons}}
+            <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star_half/v17/24px.svg"
+                 alt="" class="star-icon"/>
+          {{/each}}
+          {{#each place.emptyStarIcons}}
+            <img src="https://fonts.gstatic.com/s/i/googlematerialicons/star_outline/v9/24px.svg"
+                 alt="" class="star-icon"/>
+          {{/each}}
+        </span>
+      {{/if}}
+      {{#if place.user_ratings_total}}
+        <a href="{{place.url}}" target="_blank">{{place.user_ratings_total}} reviews</a>
+      {{else}}
+        <a href="{{place.url}}" target="_blank">View on Google Maps</a>
+      {{/if}}
+      {{#if place.price_level}}
+        &bull;
+        <span class="price-dollars">
+          {{#each place.dollarSigns}}${{/each}}
+        </span>
+      {{/if}}
+    </div>
+    <hr/>
+    {{#if place.opening_hours}}
+      <div class="hours contact">
+        <img src="https://fonts.gstatic.com/s/i/googlematerialicons/schedule/v12/24px.svg"
+             alt="Opening hours" class="icon"/>
+        <div class="right">
+          {{#each place.openingHoursSummary}}
+            <div>
+              <span class="weekday">{{days}}</span>
+              <span class="hours">{{hours}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+    {{#if place.website}}
+      <div class="website contact">
+        <img src="https://fonts.gstatic.com/s/i/googlematerialicons/public/v10/24px.svg"
+             alt="Website" class="icon"/>
+        <div class="right">
+          <a href="{{place.website}}">{{place.websiteDomain}}</a>
+        </div>
+      </div>
+    {{/if}}
+    {{#if place.formatted_phone_number}}
+      <div class="phone contact">
+        <img src="https://fonts.gstatic.com/s/i/googlematerialicons/phone/v10/24px.svg"
+             alt="Phone number" class="icon"/>
+        <div class="right">
+          {{place.formatted_phone_number}}
+        </div>
+      </div>
+    {{/if}}
+    {{#if place.html_attributions}}
+      {{#each place.html_attributions}}
+        <p class="attribution">{{{this}}}</p>
+      {{/each}}
+    {{/if}}
+  </script>
+
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+  <nav>
+    <div class="wrapper">
+      <div class="logo"><a href="index.html">E L A</a></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <li><a href="index.html">Home</a></li>
+  
+        <li>
+          <a href="index.html #maps" class="desktop-item">Maps</a>
+          <input type="checkbox" id="showMega">
+          <label for="showMega" class="mobile-item">Maps</label>
+          <div class="mega-box">
+            <div class="content">
+              <div class="row">
+                <img src="img/Ghana_National_Fire_and_Rescue_Service_(GNFRS).jpg" alt="">
+              </div>
+              <div class="row">
+                <header>Ghana Police Service</header>
+                <ul class="mega-links">
+                  <li><a href="Police map.html">View Map</a></li>
+                  <li><a href="https://police.gov.gh/en/">Visit Police Service Site</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>Ghana Fire Service</header>
+                <ul class="mega-links">
+                  <li><a href="Fire Map.html">View Map</a></li>
+                  <li><a href="https://www.gnfs.gov.gh/">Visit Fire Service Site</a></li>
+                                 </ul>
+              </div>
+              <div class="row">
+                <header>Ghana Health Service</header>
+                <ul class="mega-links">
+                  <li><a href="Hospital map.html">View Map</a></li>
+                  <li><a href="https://www.moh.gov.gh/">Visit Health Service Site</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html #about us">About Us</a></li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+
+  <pre class="tab"> </pre>
+  <pre class="tab"> </pre>
+  <pre class="tab"> </pre>
+
+  
+
+  <div id="map-container">
+    <div id="locations-panel">
+      <div id="locations-panel-list">
+        <header>
+          <h1 class="search-title">
+            <img src="https://fonts.gstatic.com/s/i/googlematerialicons/place/v15/24px.svg"/>
+            Find a Fire Station near you
+          </h1>
+          <div class="search-input">
+            <input id="location-search-input" placeholder="Enter your street address or town name">
+            <div id="search-overlay-search" class="search-input-overlay search">
+              <button id="location-search-button">
+                <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search"/>
+              </button>
+            </div>
+          </div>
+        </header>
+        <div class="section-name" id="location-results-section-name">
+          All locations
+        </div>
+        <div class="results">
+          <ul id="location-results-list"></ul>
+        </div>
+      </div>
+      <div id="locations-panel-details"></div>
+    </div>
+    <div id="map"></div>
+  </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTdBaymYMI1Z1R6dYYLlkIAWoWnpnClUE&callback=initMap&libraries=places,geometry&channel=GMPSB_locatorplus_v4_cABCDE" async defer></script>
+</body>
+</html>
